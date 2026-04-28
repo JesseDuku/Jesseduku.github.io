@@ -7,65 +7,72 @@
     <title>Projects — Jesse Duku</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="page-header">
-        <p class="kicker">Projects</p>
-        <h1>Selected Work</h1>
-        <p>A collection of research and engineering projects spanning machine learning, computer vision, and water resources.</p>
-    </header>
-
-    <nav class="site-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#publications">Publications</a></li>
-            <li><a href="generic.html" class="active">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="index.html" class="brand">Jesse Duku</a>
+            <ul class="top-nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="generic.html" class="active">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <main class="projects-grid">
+    <header class="projects-hero">
+        <h1>Projects</h1>
+        <p>A collection of research and engineering work spanning machine learning, computer vision, and water resources.</p>
+    </header>
 
-        <article class="project-card">
-            <a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener" class="project-image">
-                <img src="assets/images/Plastic.png" alt="Plastic waste detection model output">
-            </a>
-            <h3><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection with Computer Vision</a></h3>
-            <p>A YOLOv8 model built during a REVA University data competition to detect plastic waste in rivers &mdash; applying computer vision to environmental sustainability and cleaner waterways.</p>
-            <a class="project-link" href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
+    <main class="projects-page">
+        <div class="cards-grid">
 
-        <article class="project-card">
-            <a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener" class="project-image">
-                <img src="assets/images/Generate a visu 0.png" alt="Visualization of punching shear prediction model">
-            </a>
-            <h3><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Predicting Punching Shear Failure in Concrete Slabs</a></h3>
-            <p>My undergraduate thesis: a Support Vector Machine regression model for predicting punching shear in flat concrete slabs, bridging structural engineering and machine learning.</p>
-            <a class="project-link" href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
+            <article class="card">
+                <a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener" class="card-image">
+                    <img src="assets/images/Plastic.png" alt="Plastic waste detection model output">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection with Computer Vision</a></h3>
+                    <p class="card-desc">A YOLOv8 model built during a REVA University data competition to detect plastic waste in rivers &mdash; applying computer vision to environmental sustainability and cleaner waterways.</p>
+                </div>
+            </article>
 
-        <article class="project-card">
-            <a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener" class="project-image">
-                <img src="assets/images/Generate a capt 0.png" alt="Water quality classification visualization">
-            </a>
-            <h3><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
-            <p>A data-driven study on water potability covering exploratory analysis, preprocessing, and predictive modeling to support safer and more reliable water sources.</p>
-            <a class="project-link" href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
+            <article class="card">
+                <a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener" class="card-image">
+                    <img src="assets/images/Generate a visu 0.png" alt="Visualization of punching shear prediction model">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Predicting Punching Shear Failure in Concrete Slabs</a></h3>
+                    <p class="card-desc">Undergraduate thesis: a Support Vector Machine regression model for predicting punching shear in flat concrete slabs, bridging structural engineering and machine learning.</p>
+                </div>
+            </article>
 
-        <article class="project-card">
-            <a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener" class="project-image">
-                <img src="assets/images/_Create a thoug 1.png" alt="Waste segregation model output">
-            </a>
-            <h3><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation with Computer Vision</a></h3>
-            <p>A YOLOv8 classifier trained across plastic, glass, paper, and general trash for real-time waste classification &mdash; enabling automated, accurate segregation at speed.</p>
-            <a class="project-link" href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
+            <article class="card">
+                <a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener" class="card-image">
+                    <img src="assets/images/Generate a capt 0.png" alt="Water quality classification visualization">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
+                    <p class="card-desc">A data-driven study on water potability covering exploratory analysis, preprocessing, and predictive modeling to support safer and more reliable water sources.</p>
+                </div>
+            </article>
 
+            <article class="card">
+                <a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener" class="card-image">
+                    <img src="assets/images/_Create a thoug 1.png" alt="Waste segregation model output">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation with Computer Vision</a></h3>
+                    <p class="card-desc">A YOLOv8 classifier trained across plastic, glass, paper, and general trash for real-time waste classification with high precision and speed.</p>
+                </div>
+            </article>
+
+        </div>
     </main>
 
     <footer class="site-footer">
