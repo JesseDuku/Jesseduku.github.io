@@ -9,6 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(31, 58, 95, 0.16); }
+        .card-image { overflow: hidden; }
+        .card-image img { transition: transform 0.35s ease; }
+        .card:hover .card-image img { transform: scale(1.04); }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+        .card-tags span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; color: #1f3a5f; background: rgba(31, 58, 95, 0.08); padding: 0.2rem 0.55rem; border-radius: 999px; }
+    </style>
 </head>
 <body>
 
@@ -39,6 +48,7 @@
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection with Computer Vision</a></h3>
                     <p class="card-desc">A YOLOv8 model built during a REVA University data competition to detect plastic waste in rivers &mdash; applying computer vision to environmental sustainability and cleaner waterways.</p>
+                            <div class="card-tags"><span>Computer Vision</span><span>YOLOv8</span></div>
                 </div>
             </article>
 
@@ -49,6 +59,7 @@
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Predicting Punching Shear Failure in Concrete Slabs</a></h3>
                     <p class="card-desc">Undergraduate thesis: a Support Vector Machine regression model for predicting punching shear in flat concrete slabs, bridging structural engineering and machine learning.</p>
+                            <div class="card-tags"><span>Machine Learning</span><span>Structural</span></div>
                 </div>
             </article>
 
@@ -59,6 +70,7 @@
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
                     <p class="card-desc">A data-driven study on water potability covering exploratory analysis, preprocessing, and predictive modeling to support safer and more reliable water sources.</p>
+                            <div class="card-tags"><span>Machine Learning</span><span>Water Resources</span></div>
                 </div>
             </article>
 
@@ -69,6 +81,7 @@
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation with Computer Vision</a></h3>
                     <p class="card-desc">A YOLOv8 classifier trained across plastic, glass, paper, and general trash for real-time waste classification with high precision and speed.</p>
+                            <div class="card-tags"><span>Computer Vision</span><span>YOLOv8</span></div>
                 </div>
             </article>
 
