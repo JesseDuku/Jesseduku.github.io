@@ -40,6 +40,20 @@
             border-radius: 999px;
         }
         .nav-cv:hover { filter: brightness(1.12); }
+
+        /* project card polish */
+        .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(31, 58, 95, 0.16); }
+        .card-image { overflow: hidden; }
+        .card-image img { transition: transform 0.35s ease; }
+        .card:hover .card-image img { transform: scale(1.04); }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+        .card-tags span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; color: #1f3a5f; background: rgba(31, 58, 95, 0.08); padding: 0.2rem 0.55rem; border-radius: 999px; }
+        /* current research feature */
+        .feature { margin: 0.4rem 0 0; padding: 1.5rem 1.6rem; border-radius: 14px; background: linear-gradient(135deg, #13243b 0%, #1f3a5f 55%, #2f6db0 100%); color: #fff; box-shadow: 0 12px 32px rgba(31, 58, 95, 0.28); }
+        .feature-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(255, 255, 255, 0.18); padding: 0.25rem 0.65rem; border-radius: 999px; margin-bottom: 0.75rem; }
+        .feature h3 { margin: 0.1rem 0 0.55rem; font-size: 1.25rem; color: #fff; }
+        .feature p { margin: 0; color: rgba(255, 255, 255, 0.92); line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -106,6 +120,15 @@
                 </div>
             </section>
 
+            <section class="content-section" id="current">
+                <h2>Current Research</h2>
+                <div class="feature">
+                    <span class="feature-badge">2026 &ndash; Present</span>
+                    <h3>Global Food Security under Compound Climate Shocks</h3>
+                    <p>Using climate data, AI, and network science to model how compound climate shocks propagate through the international food system and to predict acute food insecurity (IPC Phase 3+).</p>
+                </div>
+            </section>
+
             <section class="content-section" id="projects">
                 <h2>Selected Projects</h2>
                 <div class="cards-grid">
@@ -117,6 +140,7 @@
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection</a></h3>
                             <p class="card-desc">A YOLOv8 computer vision model for detecting plastic in rivers, built during a REVA University data competition.</p>
+                            <div class="card-tags"><span>Computer Vision</span><span>YOLOv8</span></div>
                         </div>
                     </article>
 
@@ -127,6 +151,7 @@
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Punching Shear Prediction</a></h3>
                             <p class="card-desc">SVM regression model for punching shear failure in flat concrete slabs &mdash; my undergraduate thesis at KNUST.</p>
+                            <div class="card-tags"><span>Machine Learning</span><span>Structural</span></div>
                         </div>
                     </article>
 
@@ -137,6 +162,7 @@
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
                             <p class="card-desc">Predictive modeling for water potability across exploration, preprocessing, and classification stages.</p>
+                            <div class="card-tags"><span>Machine Learning</span><span>Water Resources</span></div>
                         </div>
                     </article>
 
@@ -147,6 +173,7 @@
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation</a></h3>
                             <p class="card-desc">Real-time YOLOv8 classifier across plastic, glass, paper, and trash for automated waste sorting.</p>
+                            <div class="card-tags"><span>Computer Vision</span><span>YOLOv8</span></div>
                         </div>
                     </article>
 
@@ -185,8 +212,20 @@
                 <ul class="publications">
                     <li>
                         <div>
+                            <p class="pub-title">The shrinking Caspian Sea: Eco-hydrological responses to human and climate pressures</p>
+                            <p class="pub-meta"><strong>Duku, J.</strong>, Tourian, M. J., et al. &middot; <em>Earth&rsquo;s Future</em>, 2026</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
                             <p class="pub-title">Building urban fire resilience to enhance national security</p>
-                            <p class="pub-meta"><em>Nature Cities</em>, 2025</p>
+                            <p class="pub-meta">AghaKouchak, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Nature Cities</em>, 2025</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="pub-title">The Coupled Hydrology&ndash;Human Activity Information (CHHAI) dataset</p>
+                            <p class="pub-meta">Boschee, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Hydrological Sciences Journal</em>, 2026</p>
                         </div>
                     </li>
                 </ul>
