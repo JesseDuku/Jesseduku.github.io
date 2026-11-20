@@ -406,3 +406,49 @@ html[data-theme="dark"] { --alert: #ff603a; }
 .fig .mt { fill: var(--accent-link); } .fig .at { fill: var(--alert); } .fig .on { fill: #fff; font-size: 11.5px; }
 .fig .big { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
 .fig .val text { text-anchor: end; font-variant-numeric: tabular-nums; }
+
+/* ---- Research: the Caspian Sea card. Shorelines digitised from the 1996 and 2024 lake extents in the AGU 2025 poster figure. ---- */
+.feature + .feature { margin-top: 28px; }
+.feature.caspian {
+    display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 56px; align-items: center;
+    padding: 2.1rem 2.6rem 2.1rem 2.2rem; color: var(--text);
+    background: var(--glass-strong); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
+    -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+}
+html[data-theme="dark"] .feature.caspian { background: rgba(26, 26, 31, 0.72); }
+.feature.caspian .feature-badge { background: transparent; border: 1px solid var(--border); color: var(--text-muted); backdrop-filter: none; }
+.feature.caspian h3 { color: var(--text); font-size: 1.5rem; letter-spacing: -0.022em; line-height: 1.2; }
+.feature.caspian p { color: var(--text-muted); max-width: 36em; }
+.caspian-facts { margin: 1.6rem 0 0; display: grid; gap: 0; border-top: 1px solid var(--border); }
+.caspian-facts div { display: grid; grid-template-columns: 8.2rem minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 0.72rem 0; border-bottom: 1px solid var(--border); }
+.caspian-facts dt { font-size: 1.12rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.caspian-facts dd { margin: 0; font-size: 0.9rem; line-height: 1.45; color: var(--text-muted); }
+.feature.caspian .caspian-links { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.92rem; font-weight: 500; }
+.feature.caspian .caspian-news { margin-top: 0.5rem; font-size: 0.86rem; color: var(--text-soft); }
+.caspian-news a { color: var(--text-muted); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.caspian-news a:hover { color: var(--text); }
+.caspian-fig { margin: 0; cursor: pointer; }
+.caspian-fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.caspian-fig .cs-lost { fill: var(--alert); opacity: 0.16; }
+.caspian-fig .cs-hl { stroke: var(--alert); stroke-width: 0.9; opacity: 0.75; }
+.caspian-fig .cs-w96, .caspian-fig .cs-w24 { fill: var(--accent); }
+.caspian-fig .cs-w96 { opacity: 1; }
+.caspian-fig.is-in .cs-w96 { opacity: 0; transition: opacity 3.4s cubic-bezier(0.5, 0, 0.3, 1) 0.7s; }
+.caspian-fig .cs-deep { fill: #001b44; opacity: 0.26; }
+.caspian-fig .cs-line { fill: none; stroke: var(--text); stroke-width: 0.6; opacity: 0.4; vector-effect: non-scaling-stroke; }
+.caspian-fig .cs-riv path { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-linecap: round; opacity: 0.7; vector-effect: non-scaling-stroke; }
+.caspian-fig text { font-family: var(--font); font-size: 10.5px; font-weight: 500; fill: var(--text-muted); letter-spacing: 0.01em; }
+.caspian-fig figcaption { display: flex; justify-content: center; gap: 18px; margin-top: 12px; font-size: 0.76rem; color: var(--text-muted); white-space: nowrap; }
+.caspian-fig figcaption span { display: inline-flex; align-items: center; gap: 7px; }
+.caspian-fig figcaption i { width: 11px; height: 11px; border-radius: 3px; }
+.caspian-fig .k-sea { background: var(--accent); }
+.caspian-fig .k-gone { background: repeating-linear-gradient(45deg, var(--alert) 0 1px, color-mix(in srgb, var(--alert) 18%, transparent) 1px 3.5px); }
+@media (prefers-reduced-motion: reduce) { .caspian-fig.is-in .cs-w96 { transition: none; } }
+@media (max-width: 860px) {
+    .feature.caspian { grid-template-columns: 1fr; gap: 28px; padding: 1.8rem 1.6rem; }
+    .caspian-fig { max-width: 230px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+    .feature.caspian { padding: 1.5rem 1.25rem; }
+    .caspian-facts div { grid-template-columns: 1fr; gap: 2px; }
+}
