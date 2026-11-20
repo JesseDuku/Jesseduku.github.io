@@ -111,7 +111,7 @@
     }
 
     /* ---------- state ---------- */
-    var now = 0, stage = 0, stageT = 0, scen = -1, custom = null, hover = null, parts = [], first = true;
+    var now = 0, stage = 0, stageT = 0, scen = -1, custom = null, hover = null, parts = [], first = true, touched = false;
     var tmp = { x: 0, y: 0, nx: 0, ny: 0 };
 
     function current() { return custom || SCEN[Math.max(0, scen)]; }
@@ -289,6 +289,13 @@
         }
         ctx.globalCompositeOperation = 'source-over';
 
+        /* until someone has tried it, exporters carry a slow ring that says they can be pressed */
+        if (!touched && !hover) ids.forEach(function (id, ix) {
+            n = nodes[id]; if (!n.exp || n.shock > 0.02) return;
+            var ph = (now * 0.42 + ix * 0.137) % 1, rr0 = n.r * u + 2.5 * u + ph * 7 * u;
+            ctx.globalAlpha = (1 - ph) * 0.5 * fade; ctx.strokeStyle = C.source; ctx.lineWidth = 0.9 * u;
+            ctx.beginPath(); ctx.arc(n.x, n.y, rr0, 0, TAU); ctx.stroke();
+        });
         /* nodes */
         ids.forEach(function (id) {
             n = nodes[id]; lit = !hover || related(n);
@@ -349,6 +356,12 @@
             ctx.globalAlpha = n.lab * fade; ctx.lineWidth = 3.5 * px; ctx.strokeStyle = C.bg; ctx.strokeText(n.name, x, y);
             ctx.globalAlpha = n.lab * fade * (hot || n === hover || !n.exp ? 1 : 0.72);
             ctx.fillStyle = hot ? C.drought : C.ink; ctx.fillText(n.name, x, y);
+            if (n === hover && n.exp) {
+                var say = n.shock > 0.05 ? 'click to end the drought' : 'click to set off a drought', dyy = (o[1] < 0 ? -1 : 1) * 14 * px;
+                ctx.font = '400 ' + (10.5 * px) + 'px ' + FONT; ctx.globalAlpha = 0.95; ctx.strokeStyle = C.bg; ctx.strokeText(say, x, y + dyy);
+                ctx.globalAlpha = 0.7; ctx.fillStyle = C.ink; ctx.fillText(say, x, y + dyy);
+                ctx.font = '500 ' + (11 * px) + 'px ' + FONT;
+            }
         });
 
         /* dissolve the map into the band at its edges */
@@ -402,7 +415,7 @@
     }
     function restart() { if (reduce) settle(); else enter(1); }
     for (var b = 0; b < btns.length; b++) btns[b].addEventListener('click', function () {
-        custom = null; scen = +this.getAttribute('data-scen'); restart();
+        touched = true; custom = null; scen = +this.getAttribute('data-scen'); restart();
     });
     function pick(ev) {
         var r = cv.getBoundingClientRect(), x = (ev.clientX - r.left - ox) / scale, y = (ev.clientY - r.top - oy) / scale, best = null, bd = 1e9;
@@ -416,6 +429,7 @@
     cv.addEventListener('pointerleave', function () { hover = null; if (reduce) draw(); });
     cv.addEventListener('click', function (ev) {
         var n = pick(ev); if (!n || !n.exp) return;
+        touched = true;
         var sh = {}, base = custom && stage > 0 && stage < 4 ? custom : {};
         Object.keys(base).forEach(function (k) { sh[k] = base[k]; });
         if (sh[n.id]) delete sh[n.id]; else sh[n.id] = 0.55;
@@ -433,6 +447,7 @@
     }
     function wake() { if (!raf && !reduce && !frozen && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
     colours(); resize();
+    new MutationObserver(function () { colours(); if (reduce || frozen) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     if ('ResizeObserver' in window) new ResizeObserver(resize).observe(cv); else window.addEventListener('resize', resize);
     /* the clock only runs while the card is on screen, so the routes draw themselves in when it is first seen */
     if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (!visible) hover = null; wake(); }, { threshold: 0.25 }).observe(cv);

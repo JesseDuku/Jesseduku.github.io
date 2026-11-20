@@ -26,11 +26,12 @@
         };
         s.trail = []; return s;
     });
+    sats.forEach(function (s, i) { s.kind = i; });
 
     var C = {}, W = 0, H = 0, R = 0, cx = 0, cy = 0, dpr = 1;
     function colours() {
         var cs = getComputedStyle(box);
-        ['ink', 'water', 'alert', 'land', 'sea0', 'sea1', 'glow'].forEach(function (k) { C[k] = cs.getPropertyValue('--gl-' + k).trim(); });
+        ['ink', 'water', 'alert', 'land', 'sea0', 'sea1', 'glow', 'foil0', 'foil1', 'cell'].forEach(function (k) { C[k] = cs.getPropertyValue('--gl-' + k).trim(); });
         C.dark = cs.getPropertyValue('--gl-dark').trim() === '1'; C.font = getComputedStyle(document.body).fontFamily;
     }
     function rgba(c, a) { return 'rgba(' + c + ',' + Math.max(0, Math.min(1, a)).toFixed(3) + ')'; }
@@ -131,18 +132,60 @@
         sats.forEach(function (s) {
             if (s.hidden) return;
             var a = s.z >= 0 ? 1 : 0.4, hw = R * 0.052, px = -s.dy, py = s.dx;
-            if (s.z > 0.12) {
+            if (s.z > 0.12 && s.kind < 2) {
                 g = ctx.createLinearGradient(s.x, s.y, s.gx, s.gy);
                 g.addColorStop(0, rgba(C.water, 0.42)); g.addColorStop(1, rgba(C.water, 0.04));
                 ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.gx + px * hw, s.gy + py * hw); ctx.lineTo(s.gx - px * hw, s.gy - py * hw); ctx.closePath(); ctx.fill();
             }
-            var k = (1 + 0.14 * s.z) * Math.max(0.8, Math.min(1.15, R / 190));
-            ctx.save(); ctx.translate(s.x, s.y); ctx.rotate(Math.atan2(s.dy, s.dx)); ctx.scale(k, k); ctx.globalAlpha = a;
-            ctx.fillStyle = rgba(C.water, 0.95); ctx.fillRect(-2.2, -11.5, 4.4, 7.5); ctx.fillRect(-2.2, 4, 4.4, 7.5);       /* solar panels */
-            ctx.strokeStyle = rgba(C.ink, 0.9); ctx.lineWidth = 0.9; ctx.beginPath(); ctx.moveTo(0, -4); ctx.lineTo(0, 4); ctx.stroke();
-            ctx.fillStyle = rgba(C.ink, 1); ctx.beginPath(); ctx.rect(-2.8, -2.8, 5.6, 5.6); ctx.fill();                      /* bus */
-            ctx.restore(); ctx.globalAlpha = 1;
+            var k = (1 + 0.12 * s.z) * Math.max(0.72, Math.min(1.12, R / 235)) * (s.z >= 0 ? 1 : 0.86);
+            ctx.save(); ctx.translate(s.x, s.y); ctx.rotate(Math.atan2(cy - s.y, cx - s.x) - Math.PI / 2); ctx.scale(k, k); ctx.globalAlpha = a;
+            craft(s.kind); ctx.restore(); ctx.globalAlpha = 1;
         });
+    }
+
+    /* spacecraft, drawn with +y pointing at the Earth. Sizes are in pixels at scale 1. */
+    function panel(x, y, w, h, cells) {
+        var g = ctx.createLinearGradient(x, y, x, y + h);
+        g.addColorStop(0, rgba(C.water, 1)); g.addColorStop(1, rgba(C.water, 0.72));
+        ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
+        ctx.strokeStyle = rgba(C.cell, 0.55); ctx.lineWidth = 0.5; ctx.beginPath();
+        for (var i = 1; i < cells; i++) { ctx.moveTo(x + w * i / cells, y); ctx.lineTo(x + w * i / cells, y + h); }
+        ctx.moveTo(x, y + h / 2); ctx.lineTo(x + w, y + h / 2); ctx.stroke();
+        ctx.strokeStyle = rgba(C.ink, 0.55); ctx.lineWidth = 0.6; ctx.strokeRect(x, y, w, h);
+    }
+    function bus(x, y, w, h) {
+        var g = ctx.createLinearGradient(x, y, x + w, y + h);
+        g.addColorStop(0, C.foil0); g.addColorStop(1, C.foil1);
+        ctx.fillStyle = g; ctx.beginPath(); ctx.rect(x, y, w, h); ctx.fill();
+        ctx.strokeStyle = rgba(C.ink, 0.6); ctx.lineWidth = 0.6; ctx.stroke();
+    }
+    function craft(kind) {
+        ctx.lineCap = 'round'; ctx.strokeStyle = rgba(C.ink, 0.75); ctx.lineWidth = 0.8;
+        if (kind === 0) {                       /* radar altimeter: two wings, dish looking down */
+            ctx.beginPath(); ctx.moveTo(-9, 0); ctx.lineTo(9, 0); ctx.stroke();
+            panel(-25, -3.2, 16, 6.4, 4); panel(9, -3.2, 16, 6.4, 4);
+            bus(-4.2, -5, 8.4, 10);
+            ctx.strokeStyle = rgba(C.ink, 0.85); ctx.lineWidth = 0.8;
+            ctx.beginPath(); ctx.moveTo(0, 5); ctx.lineTo(0, 10.5); ctx.moveTo(-2.4, 7.2); ctx.lineTo(0, 10.5); ctx.lineTo(2.4, 7.2); ctx.stroke();
+            ctx.fillStyle = rgba(C.ink, 0.92); ctx.beginPath(); ctx.ellipse(0, 6.4, 5, 1.9, 0, 0, Math.PI); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(2.5, -5); ctx.lineTo(4.5, -9); ctx.stroke();
+        } else if (kind === 1) {                /* optical imager: one long array, telescope looking down */
+            ctx.beginPath(); ctx.moveTo(-5, -1.5); ctx.lineTo(-9, -1.5); ctx.stroke();
+            panel(-33, -5, 24, 7, 6);
+            bus(-5, -6.5, 10, 12);
+            ctx.fillStyle = rgba(C.ink, 0.9); ctx.fillRect(-3, 5.5, 6, 5.5);
+            ctx.fillStyle = rgba(C.water, 0.9); ctx.fillRect(-2.1, 9.8, 4.2, 1.2);
+            ctx.fillStyle = rgba(C.ink, 0.8); ctx.fillRect(5, -3.5, 2.6, 3);
+            ctx.beginPath(); ctx.moveTo(-2, -6.5); ctx.lineTo(-4, -10.5); ctx.stroke();
+        } else {                                /* gravity pair: two small craft, one following the other, ranging between them */
+            ctx.setLineDash([1.2, 2.4]); ctx.strokeStyle = rgba(C.water, 0.9); ctx.beginPath(); ctx.moveTo(-9, 0); ctx.lineTo(9, 0); ctx.stroke(); ctx.setLineDash([]);
+            [-15, 15].forEach(function (x) {
+                ctx.beginPath(); ctx.moveTo(x - 6.5, 3); ctx.lineTo(x - 4, -3); ctx.lineTo(x + 4, -3); ctx.lineTo(x + 6.5, 3); ctx.closePath();
+                var g = ctx.createLinearGradient(0, -3, 0, 3); g.addColorStop(0, rgba(C.water, 1)); g.addColorStop(1, rgba(C.water, 0.7));
+                ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = rgba(C.ink, 0.6); ctx.lineWidth = 0.6; ctx.stroke();
+                ctx.fillStyle = C.foil0; ctx.fillRect(x - 6.5, 3, 13, 1.8);
+            });
+        }
     }
 
     function orbits(front) {
