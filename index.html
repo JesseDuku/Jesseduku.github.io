@@ -21,7 +21,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <script>(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <script>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
     <canvas class="corners" aria-hidden="true"></canvas>
@@ -46,8 +46,8 @@
     <header class="hero">
         <div class="hero-text">
             <h1>Jesse Duku</h1>
-            <p class="hero-role">Ph.D. candidate in Civil &amp; Environmental Engineering<br>University of California, Irvine</p>
-            <p class="hero-line">I study climate extremes, how climate and non-climate hazards interact, and what they mean for food security and the world&rsquo;s shrinking lakes.</p>
+            <p class="hero-role">Ph.D. student in Civil &amp; Environmental Engineering<br>University of California, Irvine</p>
+            <p class="hero-line">I study how climate extremes and non-climate hazards combine, and what that means for the people whose food and water are at stake.</p>
             <ul class="hero-links">
                 <li><a class="hero-cv" href="assets/Jesse_Duku_CV.pdf" target="_blank" rel="noopener">Download CV</a></li>
                 <li><a href="mailto:jduku@uci.edu" aria-label="Email" title="Email"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a></li>
@@ -82,8 +82,8 @@
                     <div class="foodnet-head">
                         <div>
                             <span class="feature-badge">2026 &ndash; Present</span>
-                            <h3>Global Food Security under Compound Climate Shocks</h3>
-                            <p>Using climate data, AI, and network science to model how compound climate shocks propagate through the international food system and to predict acute food insecurity (IPC Phase 3+).</p>
+                            <h3>Global Food Availability under Compound Climate Shocks</h3>
+                            <p>Using climate data and network theory to model how compound climate shocks travel through the international grain trade and reduce the food available to people far from where the shock began.</p>
                         </div>
                         <div class="foodnet-try">
                             <p>Simulate a drought</p>
@@ -108,7 +108,6 @@
                             <li><i class="k-repl"></i>Replacement supply</li>
                             <li><i class="k-lost"></i>Imports lost</li>
                         </ul>
-                        <p>Illustrative sketch, not model output.</p>
                     </div>
                 </div>
             </section>

@@ -51,6 +51,7 @@
     });
     ids.forEach(function (id) {
         var n = nodes[id];
+        if (D.shapes && D.shapes[id]) n.shape = new Path2D(D.shapes[id]);
         n.r = n.exp ? Math.max(3, Math.sqrt(n.vol) * 1.05) : Math.max(2.4, Math.sqrt(n.vol) * 0.78);
     });
 
@@ -182,7 +183,7 @@
     }
 
     /* ---------- drawing ---------- */
-    var scale = 1, dpr = 1, ox = 0, oy = 0, cw = 0, ch = 0, land = new Path2D(D.land), grat = new Path2D(D.grat);
+    var scale = 1, dpr = 1, ox = 0, oy = 0, cw = 0, ch = 0, land = new Path2D(D.land), grat = new Path2D(D.grat), borders = new Path2D(D.borders);
     function resize() {
         cw = cv.clientWidth; ch = cv.clientHeight; if (!cw || !ch) return;
         dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -218,7 +219,21 @@
         /* base map */
         ctx.globalAlpha = fade; ctx.strokeStyle = C.grat; ctx.lineWidth = px; ctx.stroke(grat);
         ctx.fillStyle = C.land; ctx.fill(land);
-        ctx.strokeStyle = C.coast; ctx.lineWidth = 0.75 * px; ctx.lineJoin = 'round'; ctx.stroke(land);
+        /* impact by country: a drought hatches the exporter it hits, and each importer warms as its imports fall */
+        ids.forEach(function (id) {
+            n = nodes[id]; if (!n.shape) return;
+            if (n.exp && n.shock > 0.01) {
+                var g = Math.min(1, n.shock / 0.45);
+                ctx.globalAlpha = fade * 0.17 * g; ctx.fillStyle = C.drought; ctx.fill(n.shape);
+                ctx.save(); ctx.clip(n.shape); ctx.beginPath();
+                for (var d = -D.H; d < D.W; d += 4.2 * u) { ctx.moveTo(d, D.H); ctx.lineTo(d + D.H, 0); }
+                ctx.globalAlpha = fade * 0.42 * g; ctx.strokeStyle = C.drought; ctx.lineWidth = 0.45 * u; ctx.stroke(); ctx.restore();
+            } else if (!n.exp && n.gap > 0.01) {
+                ctx.globalAlpha = fade * Math.min(0.55, n.gap * 1.05); ctx.fillStyle = C.drought; ctx.fill(n.shape);
+            }
+        });
+        ctx.globalAlpha = fade * 0.5; ctx.strokeStyle = C.coast; ctx.lineWidth = 0.5 * px; ctx.lineJoin = 'round'; ctx.stroke(borders);
+        ctx.globalAlpha = fade; ctx.lineWidth = 0.75 * px; ctx.stroke(land);
 
         /* routes: quiet base line, then the stretches a shock or a re-supply has reached */
         ctx.lineCap = 'round';
@@ -244,7 +259,7 @@
             }
         }
 
-        /* drought: a warm field and three severity contours, hatched more densely towards the core */
+        /* drought: a warm field and three severity contours over the hatched country */
         ids.forEach(function (id) {
             n = nodes[id]; if (n.shock < 0.01) return;
             var g = Math.min(1, n.shock / 0.45), R = (n.r * 2.1 + 20) * (0.5 + 0.5 * g) * Math.min(u, 1.3);
@@ -252,7 +267,7 @@
             gr.addColorStop(0, C.drought); gr.addColorStop(1, 'rgba(0,0,0,0)');
             ctx.globalAlpha = (ADD ? 0.2 : 0.13) * g; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(n.x, n.y, R * 1.7, 0, TAU); ctx.fill();
             ctx.strokeStyle = C.drought;
-            [[1, 0, 0.7], [0.7, 5.5, 0.6], [0.42, 2.6, 0.9]].forEach(function (lv, j) {
+            [[1, 0, 0.7], [0.7, 0, 0.6], [0.42, 0, 0.9]].forEach(function (lv, j) {
                 var gj = ease((g - j * 0.12) / 0.76);
                 blob(n, R * lv[0], now);
                 ctx.globalAlpha = gj * lv[2]; ctx.lineWidth = 0.75 * u; ctx.stroke();
