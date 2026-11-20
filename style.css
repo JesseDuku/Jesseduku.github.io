@@ -325,7 +325,7 @@ html[data-theme="dark"] .about-photo { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5
 /* ---- Current Research card: the grain-trade sketch. A glass card like the others, light or dark with the theme. ---- */
 .feature.foodnet {
     --fn-bg: #fdfdfe; --fn-land: #e9eaef; --fn-coast: rgba(29, 29, 31, 0.13); --fn-grat: rgba(29, 29, 31, 0.045);
-    --fn-route: 29, 29, 31; --fn-grain: #2a2a2e; --fn-source: #b98a2e; --fn-drought: #e2461c; --fn-repl: #0071e3;
+    --fn-route: 29, 29, 31; --fn-grain: #74747c; --fn-source: #b98a2e; --fn-drought: #e2461c; --fn-repl: #0071e3;
     --fn-ink: #1d1d1f; --fn-blend: source-over;
     padding: 2.1rem 2.2rem 1.6rem; overflow: hidden; color: var(--text);
     background: var(--glass-strong); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
@@ -384,3 +384,25 @@ html[data-theme="dark"] .feature.foodnet {
     .foodnet-steps li:not(.is-on) { color: transparent; }
     .foodnet-legend { flex-wrap: wrap; gap: 8px 14px; }
 }
+
+/* ---- Project figures: line drawings in the page's ink, blue for what the model returns, orange-red for failure or the unsafe class. ---- */
+:root { --alert: #dc4419; }
+html[data-theme="dark"] { --alert: #ff603a; }
+.card-image { background: transparent; border-bottom: 1px solid var(--border); }
+.fig { display: block; width: 100%; height: 100%; font-family: var(--font); }
+.fig path, .fig rect, .fig circle { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.fig .i { stroke: var(--text); stroke-width: 1.15; opacity: 0.62; }
+.fig .i2 { stroke: var(--text); stroke-width: 1; opacity: 0.34; }
+.fig .i3 { stroke: var(--text); stroke-width: 1; opacity: 0.14; }
+.fig .dot { stroke-width: 2; opacity: 0.22; } .fig .dot2 { stroke-width: 3.4; opacity: 0.7; }
+.fig .obj path { fill: var(--text); stroke: none; opacity: 0.5; }
+.fig .m { stroke: var(--accent); stroke-width: 1.5; }
+.fig .mf { fill: var(--accent); stroke: none; }
+.fig .a { stroke: var(--alert); stroke-width: 1.5; } .fig .dash { stroke-dasharray: 5 4; }
+.fig .af { fill: var(--alert); stroke: none; }
+.fig .pt circle { fill: var(--bg); stroke: var(--text); stroke-width: 1.15; opacity: 0.7; }
+.fig .bar { stroke: var(--accent); stroke-width: 7; stroke-linecap: butt; } .fig .bar2 { stroke: var(--text); stroke-width: 7; stroke-linecap: butt; opacity: 0.4; }
+.fig text { font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em; fill: var(--text-muted); }
+.fig .mt { fill: var(--accent-link); } .fig .at { fill: var(--alert); } .fig .on { fill: #fff; font-size: 11.5px; }
+.fig .big { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.fig .val text { text-anchor: end; font-variant-numeric: tabular-nums; }

@@ -12,8 +12,8 @@
     var ctx = cv.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var SPEED = 78, RATE = 0.5, SPARE = 0.15, TAU = Math.PI * 2;
-    var DUR = [3.5, 2.6, 6.5, 9, 4.5], INTRO = 7.5;
+    var SPEED = 60, RATE = 0.27, SPARE = 0.15, TAU = Math.PI * 2;
+    var DUR = [3.5, 2.6, 8, 10.5, 5], INTRO = 8.5;
     var SCEN = [{ USA: 0.5 }, { RUS: 0.6 }, { USA: 0.5, RUS: 0.6 }];
     var LABEL = { USA: [0, 1], CAN: [0, -1], BRA: [1, 0], ARG: [1, 0], RUS: [0, -1], UKR: [-1, 0], FRA: [-1, 0],
                   AUS: [0, 1], IND: [0, 1], THA: [-1, 0], VNM: [1, 0], KAZ: [1, -1],
