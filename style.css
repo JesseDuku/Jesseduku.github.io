@@ -264,15 +264,41 @@ html[data-theme="dark"] .top-nav {
 }
 html[data-theme="dark"] .sidebar-photo { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5); }
 
-/* ---- The watershed behind the home page: terrain, streams and rain in the site's own ink,
-        water in the accent blue, extremes in one orange-red. ---- */
-:root { --bs-ink: 29, 29, 31; --bs-water: 0, 113, 227; --bs-extreme: 219, 68, 27; }
-html[data-theme="dark"] { --bs-ink: 245, 245, 247; --bs-water: 41, 151, 255; --bs-extreme: 255, 96, 58; }
-.basin { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.basin ~ .page, .basin ~ .site-footer { position: relative; z-index: 1; }
-.gauge { margin: 44px 0 0; }
-.gauge canvas { display: block; width: 100%; height: 104px; }
-.gauge figcaption { margin-top: 12px; max-width: 46em; font-size: 0.82rem; line-height: 1.5; letter-spacing: -0.003em; color: var(--text-soft); }
+/* ---- Home page: quiet contour lines in two corners, and one figure: Earth watched from orbit. ---- */
+:root { --bs-ink: 29, 29, 31; }
+html[data-theme="dark"] { --bs-ink: 245, 245, 247; }
+.corners { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.corners ~ .hero, .corners ~ .page, .corners ~ .site-footer { position: relative; z-index: 1; }
+.hero {
+    max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
+    min-height: min(680px, calc(100vh - var(--nav-h) - 120px));
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); align-items: center; gap: 24px;
+}
+.hero-text { padding: 40px 0; animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero h1 { font-size: clamp(2.9rem, 5.6vw, 4.5rem); font-weight: 600; letter-spacing: -0.038em; line-height: 1; color: var(--text); }
+.hero-role { margin-top: 18px; font-size: 1.02rem; line-height: 1.4; letter-spacing: -0.008em; color: var(--text-muted); }
+.hero-line { margin-top: 26px; max-width: 24em; font-size: clamp(1.18rem, 1.75vw, 1.42rem); font-weight: 500; line-height: 1.34; letter-spacing: -0.02em; color: var(--text); text-wrap: pretty; }
+.hero-globe {
+    --gl-ink: 29, 29, 31; --gl-water: 0, 113, 227; --gl-alert: 200, 62, 24; --gl-glow: 0, 113, 227;
+    --gl-land: #e4e6ec; --gl-sea0: #ffffff; --gl-sea1: #f1f3f8; --gl-dark: 0;
+    margin-right: clamp(-90px, calc((var(--max-w) - 100vw) / 2), 0px);      /* reach into the page margin where there is one */
+}
+html[data-theme="dark"] .hero-globe {
+    --gl-ink: 245, 245, 247; --gl-water: 41, 151, 255; --gl-alert: 255, 122, 84; --gl-glow: 41, 151, 255;
+    --gl-land: #22252d; --gl-sea0: #151922; --gl-sea1: #0a0c11; --gl-dark: 1;
+}
+.hero-globe canvas { display: block; width: 100%; aspect-ratio: 1 / 0.9; cursor: grab; touch-action: pan-y; }
+.hero-globe canvas.is-dragging { cursor: grabbing; }
+.hero ~ .page { padding-top: 40px; }
+#about > h2 { font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-bottom: 26px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-text { animation: none; } }
+@media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 0; padding: 0 22px; min-height: 0; }
+    .hero-text { padding: 44px 0 0; }
+    .hero-globe { margin: 0 -22px; }
+    .hero ~ .page { padding-top: 24px; }
+}
 
 /* ---- Current Research card: the grain-trade sketch. The card is dark in both themes, so the map is too. ---- */
 .feature.foodnet {

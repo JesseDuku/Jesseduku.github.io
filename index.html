@@ -24,7 +24,7 @@
     <script>(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
-    <canvas class="basin" aria-hidden="true"></canvas>
+    <canvas class="corners" aria-hidden="true"></canvas>
 
     <nav class="top-nav">
         <div class="top-nav-inner">
@@ -42,6 +42,17 @@
             </ul>
         </div>
     </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Jesse Duku</h1>
+            <p class="hero-role">Ph.D. candidate in Civil &amp; Environmental Engineering, UC Irvine</p>
+            <p class="hero-line">I study floods, droughts and shrinking lakes, and how satellite data and machine learning can help us manage water and food.</p>
+        </div>
+        <div class="hero-globe">
+            <canvas role="img" aria-label="A slowly turning globe with three satellites in orbit scanning the surface. Large lakes are marked in blue and the Caspian Sea is labelled."></canvas>
+        </div>
+    </header>
 
     <main class="page">
 
@@ -84,16 +95,12 @@
         <div class="content">
 
             <section id="about">
-                <h1>Jesse Duku</h1>
+                <h2>About</h2>
                 <div class="bio">
                     <p>I am a PhD student in civil engineering at UC Irvine, where I study floods, droughts, and how machine learning can help us manage water better.</p>
                     <p>Most of my work looks at how floods and droughts are changing as the climate shifts, and what that means for the communities in their path. I am interested in compound hazards, cases where two risks hit at once and do more damage together than either would alone, and in extreme events more generally.</p>
                     <p>To get at this, I combine statistical hydrology with machine learning to forecast how much water we will have, put real numbers on the risks, and help design infrastructure that can keep up with a changing climate. The question of how AI can reshape water management is what drives my work.</p>
                 </div>
-                <figure class="gauge">
-                    <canvas role="img" aria-label="Live hydrograph: discharge at a stream gauge over the last minute, with a flood threshold, flagged peaks and a short forecast."></canvas>
-                    <figcaption>The streams behind this page are a small rainfall&ndash;runoff model. Rain crosses the page, drains into the rivers in the margins, and this is the flow it produces at the gauge.</figcaption>
-                </figure>
             </section>
 
             <section class="content-section" id="current">
@@ -278,7 +285,11 @@
         <p>&copy; 2026 Jesse Duku</p>
     </footer>
 
-    <script defer src="assets/js/basin.js"></script>
+    <script defer src="assets/js/corners.js"></script>
+    <script defer src="assets/js/vendor/d3-array.min.js"></script>
+    <script defer src="assets/js/vendor/d3-geo.min.js"></script>
+    <script defer src="assets/js/globe-data.js"></script>
+    <script defer src="assets/js/globe.js"></script>
     <script defer src="assets/js/foodnet-data.js"></script>
     <script defer src="assets/js/foodnet.js"></script>
     <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
