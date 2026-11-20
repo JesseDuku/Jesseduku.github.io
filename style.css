@@ -325,7 +325,7 @@ html[data-theme="dark"] .about-photo { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5
 /* ---- Current Research card: the grain-trade sketch. A glass card like the others, light or dark with the theme. ---- */
 .feature.foodnet {
     --fn-bg: #fdfdfe; --fn-land: #e9eaef; --fn-coast: rgba(29, 29, 31, 0.13); --fn-grat: rgba(29, 29, 31, 0.045);
-    --fn-route: 29, 29, 31; --fn-grain: #74747c; --fn-source: #b98a2e; --fn-drought: #e2461c; --fn-repl: #0071e3;
+    --fn-route: 29, 29, 31; --fn-grain: #b07f1f; --fn-source: #b98a2e; --fn-drought: #e2461c; --fn-repl: #0071e3;
     --fn-ink: #1d1d1f; --fn-blend: source-over;
     padding: 2.1rem 2.2rem 1.6rem; overflow: hidden; color: var(--text);
     background: var(--glass-strong); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
@@ -333,7 +333,7 @@ html[data-theme="dark"] .about-photo { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5
 }
 html[data-theme="dark"] .feature.foodnet {
     --fn-bg: #17171b; --fn-land: #22242a; --fn-coast: rgba(255, 255, 255, 0.17); --fn-grat: rgba(255, 255, 255, 0.045);
-    --fn-route: 235, 238, 245; --fn-grain: #f7e7c0; --fn-source: #f2cd82; --fn-drought: #ff603a; --fn-repl: #2997ff;
+    --fn-route: 235, 238, 245; --fn-grain: #f2cd82; --fn-source: #f2cd82; --fn-drought: #ff603a; --fn-repl: #2997ff;
     --fn-ink: #f5f5f7; --fn-blend: lighter;
     background: rgba(26, 26, 31, 0.72);
 }

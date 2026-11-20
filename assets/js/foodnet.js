@@ -1,8 +1,9 @@
 /* Grain-trade shock sketch for the home page.
    A toy two-stage model: (1) a drought cuts an exporter's shipments and the shortfall
-   travels down each route at the speed of the grain already at sea; (2) exporters with
-   spare grain re-supply importers, and importers with more buying power are served first.
-   Volumes are rough and illustrative. Geometry: Equal Earth projection, great-circle routes. */
+   travels down each route; (2) exporters with spare grain re-supply importers, and
+   importers with more buying power are served first. Volumes are rough and illustrative.
+   Grain moves along one shared network of sea lanes and land corridors (Equal Earth projection),
+   so flows bundle through the same straits; a few short dashes show the direction of travel. */
 (function () {
     'use strict';
     var D = window.FOODNET_DATA, root = document.querySelector('.foodnet');
@@ -12,8 +13,8 @@
     var ctx = cv.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var SPEED = 60, RATE = 0.27, SPARE = 0.15, TAU = Math.PI * 2;
-    var DUR = [3.5, 2.6, 8, 10.5, 5], INTRO = 8.5;
+    var SPEED = 42, SPARE = 0.15, TAU = Math.PI * 2, DASHES = 34, DASH = 13, SIDE = 1.15;
+    var DUR = [3.5, 2.6, 8, 10.5, 5], INTRO = 4.5;
     var SCEN = [{ USA: 0.5 }, { RUS: 0.6 }, { USA: 0.5, RUS: 0.6 }];
     var LABEL = { USA: [0, 1], CAN: [0, -1], BRA: [1, 0], ARG: [1, 0], RUS: [0, -1], UKR: [-1, 0], FRA: [-1, 0],
                   AUS: [0, 1], IND: [0, 1], THA: [-1, 0], VNM: [1, 0], KAZ: [1, -1],
@@ -35,6 +36,26 @@
         nodes[id] = { id: id, name: n.n, x: n.x, y: n.y, exp: n.r === 'E', w: n.w, vol: 0, out: [], inn: [],
                       shock: 0, shockT: 0, seed: Math.random() * 100, lab: 0, gap: 0, pulse: -9, pulseC: '' };
     });
+    /* lanes are the unique stretches of the network; a route is a chain of lanes, walked forwards or backwards */
+    var lanes = D.lanes.map(function (l) {
+        var path = new Path2D();
+        l.s.forEach(function (a) { path.moveTo(a[0], a[1]); for (var i = 2; i < a.length; i += 2) path.lineTo(a[i], a[i + 1]); });
+        return { s: l.s, land: !!l.l, f: 0, path: path };
+    });
+    D.edges = D.routes.map(function (r) {
+        var out = [], cur = null;
+        r.p.forEach(function (st) {
+            var segs = lanes[st[0]].s, fwd = st[1] > 0, k, sg, i, pts;
+            lanes[st[0]].f += r.f;
+            for (k = 0; k < segs.length; k++) {
+                sg = segs[fwd ? k : segs.length - 1 - k];
+                if (fwd) pts = sg.slice(); else { pts = []; for (i = sg.length - 2; i >= 0; i -= 2) pts.push(sg[i], sg[i + 1]); }
+                if (cur && k === 0) cur.push.apply(cur, pts.slice(2));      /* carries on from the previous lane */
+                else { cur = pts; out.push(cur); }                           /* a new piece: start of the route, or across the map edge */
+            }
+        });
+        return { a: r.a, b: r.b, f: r.f, s: out };
+    });
     D.edges.forEach(function (e) {
         var segs = e.s.map(function (a) {
             var x = [], y = [], c = [0], i;
@@ -54,6 +75,9 @@
         if (D.shapes && D.shapes[id]) n.shape = new Path2D(D.shapes[id]);
         n.r = n.exp ? Math.max(3, Math.sqrt(n.vol) * 1.05) : Math.max(2.4, Math.sqrt(n.vol) * 0.78);
     });
+    var work = 0;
+    edges.forEach(function (e) { e.tt = 1.3 + 4.9 * e.len / maxLen; e.vf = e.len / e.tt; work += e.f * e.len; });   /* a shock reaches the far end of the longest route in about six seconds */
+    var rate = DASHES * SPEED / work;
 
     function at(ed, s, out) {
         for (var k = 0; k < ed.segs.length; k++) {
@@ -70,21 +94,30 @@
         }
         return out;
     }
-    /* add the stretch of a route between distances s0 and s1 to the current path */
-    function trace(ed, s0, s1) {
-        var off = 0;
+    /* add the stretch of a route between distances s0 and s1 to the current path, shifted `off` to the right of travel */
+    var buf = [];
+    function trace(ed, s0, s1, off) {
+        var base = 0;
         for (var k = 0; k < ed.segs.length; k++) {
-            var sg = ed.segs[k], a = s0 - off, b = s1 - off, c = sg.c, j = 1, t;
-            off += sg.len;
+            var sg = ed.segs[k], a = s0 - base, b = s1 - base, c = sg.c, j = 1, t, n = 0, i;
+            base += sg.len;
             if (b <= 0 || a >= sg.len) continue;
             if (a < 0) a = 0; if (b > sg.len) b = sg.len;
             while (j < c.length - 1 && c[j] < a) j++;
             t = (a - c[j - 1]) / ((c[j] - c[j - 1]) || 1);
-            ctx.moveTo(sg.x[j - 1] + (sg.x[j] - sg.x[j - 1]) * t, sg.y[j - 1] + (sg.y[j] - sg.y[j - 1]) * t);
-            while (j < c.length && c[j] < b) { ctx.lineTo(sg.x[j], sg.y[j]); j++; }
+            buf[n++] = sg.x[j - 1] + (sg.x[j] - sg.x[j - 1]) * t; buf[n++] = sg.y[j - 1] + (sg.y[j] - sg.y[j - 1]) * t;
+            while (j < c.length && c[j] < b) { buf[n++] = sg.x[j]; buf[n++] = sg.y[j]; j++; }
             if (j < c.length) {
                 t = (b - c[j - 1]) / ((c[j] - c[j - 1]) || 1);
-                ctx.lineTo(sg.x[j - 1] + (sg.x[j] - sg.x[j - 1]) * t, sg.y[j - 1] + (sg.y[j] - sg.y[j - 1]) * t);
+                buf[n++] = sg.x[j - 1] + (sg.x[j] - sg.x[j - 1]) * t; buf[n++] = sg.y[j - 1] + (sg.y[j] - sg.y[j - 1]) * t;
+            }
+            for (i = 0; i < n; i += 2) {
+                var x = buf[i], y = buf[i + 1];
+                if (off) {
+                    var i0 = Math.max(0, i - 2), i1 = Math.min(n - 2, i + 2), dx = buf[i1] - buf[i0], dy = buf[i1 + 1] - buf[i0 + 1], l = Math.hypot(dx, dy) || 1;
+                    x -= dy / l * off; y += dx / l * off;
+                }
+                if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
             }
         }
     }
@@ -116,7 +149,7 @@
     var tmp = { x: 0, y: 0, nx: 0, ny: 0 };
 
     function current() { return custom || SCEN[Math.max(0, scen)]; }
-    function arrive(ed, key, v) { ed.queue.push({ t: now + ed.len / SPEED, k: key, v: v }); }
+    function arrive(ed, key, v) { ed.queue.push({ t: now + ed.tt, k: key, v: v }); }
 
     function enter(s) {
         stage = s; stageT = 0;
@@ -150,11 +183,7 @@
         ui();
     }
 
-    function spawn(ed, teal, s) {
-        parts.push({ e: ed, s: s || 0, teal: teal, off: (Math.random() - 0.5) * ed.wd * 2.2,
-                     v: SPEED * (0.9 + Math.random() * 0.2), sz: 0.8 + Math.random() * 0.45,
-                     x: 0, y: 0, tx: 0, ty: 0, mx: 0, my: 0, a: 0 });
-    }
+    function spawn(ed, teal, s) { parts.push({ e: ed, s: s || 0, teal: teal, v: SPEED * (0.88 + Math.random() * 0.24) }); }
 
     function step(dt) {
         now += dt; stageT += dt;
@@ -162,7 +191,7 @@
             if (stage === 0 && scen < 0) scen = 0;
             enter((stage + 1) % 5);
         }
-        var k = 1 - Math.exp(-dt * 1.5), dens = RATE * (scale < 0.6 ? 0.6 : 1), i;
+        var k = 1 - Math.exp(-dt * 1.5), dens = rate * (cw < 700 ? 0.6 : 1), i;
         ids.forEach(function (id) { var n = nodes[id]; n.shock += (n.shockT - n.shock) * k; });
         for (i = 0; i < edges.length; i++) {
             var e = edges[i];
@@ -172,13 +201,13 @@
                 e[q.k] = q.v;
             }
             e.repl += (e.replT - e.repl) * k; e.loss += (e.lossT - e.loss) * k; e.got += (e.gotT - e.got) * k;
-            e.acc += dens * e.f * (1 - e.a.shock) * dt; e.accR += dens * e.repl * dt;
+            e.acc += dens * e.f * (1 - e.a.shock) * dt; e.accR += dens * 2.2 * e.repl * dt;
             while (e.acc >= 1) { e.acc -= 1; spawn(e, false); }
             while (e.accR >= 1) { e.accR -= 1; spawn(e, true); }
         }
         for (i = parts.length - 1; i >= 0; i--) {
             var p = parts[i]; p.s += p.v * dt;
-            if (p.s >= p.e.len) { parts[i] = parts[parts.length - 1]; parts.pop(); }
+            if (p.s >= p.e.len + DASH) { parts[i] = parts[parts.length - 1]; parts.pop(); }
         }
     }
 
@@ -211,7 +240,7 @@
 
     function draw() {
         var u = Math.max(1, 0.5 / scale), px = 1 / scale, i, e, n, lit, p;
-        var intro = first ? now * SPEED * 1.25 : 1e9, fade = first ? ease(now / 1.2) : 1;
+        var fade = first ? ease(now / 1.4) : 1;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.globalCompositeOperation = 'source-over';
         ctx.clearRect(0, 0, cw, ch);
         ctx.setTransform(scale * dpr, 0, 0, scale * dpr, ox * dpr, oy * dpr);
@@ -235,27 +264,32 @@
         ctx.globalAlpha = fade * 0.5; ctx.strokeStyle = C.coast; ctx.lineWidth = 0.5 * px; ctx.lineJoin = 'round'; ctx.stroke(borders);
         ctx.globalAlpha = fade; ctx.lineWidth = 0.75 * px; ctx.stroke(land);
 
-        /* routes: quiet base line, then the stretches a shock or a re-supply has reached */
-        ctx.lineCap = 'round';
-        for (i = 0; i < edges.length; i++) {
-            e = edges[i]; lit = !hover || e.a === hover || e.b === hover;
-            ctx.strokeStyle = 'rgba(' + C.route + ',' + ((0.085 + Math.min(0.15, e.f / 65)) * (lit ? (hover ? 2 : 1) : 0.3)).toFixed(3) + ')';
-            ctx.lineWidth = (0.45 + Math.sqrt(e.f) * 0.2) * u;
-            ctx.beginPath(); trace(e, 0, Math.min(e.len, intro)); ctx.stroke();
+        /* the network: every lane once, heavier where more grain shares it */
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalAlpha = fade;
+        for (i = 0; i < lanes.length; i++) {
+            var ln = lanes[i];
+            ctx.strokeStyle = 'rgba(' + C.route + ',' + ((ln.land ? 0.15 : 0.21) * (hover ? 0.5 : 1)).toFixed(3) + ')';
+            ctx.lineWidth = (ln.land ? 0.55 : 0.5 + Math.sqrt(ln.f) * 0.16) * u;
+            ctx.stroke(ln.path);
         }
-        ctx.globalCompositeOperation = C.blend;
-        for (i = 0; i < edges.length; i++) {
+        if (hover) for (i = 0; i < edges.length; i++) {
+            e = edges[i]; if (e.a !== hover && e.b !== hover) continue;
+            ctx.strokeStyle = 'rgba(' + C.route + ',0.5)'; ctx.lineWidth = (0.6 + Math.sqrt(e.f) * 0.2) * u;
+            ctx.beginPath(); trace(e, 0, e.len, 0); ctx.stroke();
+        }
+        /* then the stretches a shock or a re-supply has reached; re-supply runs alongside, not on top */
+        for (i = 0; i < edges.length; i++) {      /* plain blending: where many routes share a lane the colour deepens, it does not burn out */
             e = edges[i]; lit = !hover || e.a === hover || e.b === hover;
             var w = (0.6 + Math.sqrt(e.f) * 0.24) * u, s0, s1;
             if (e.cut0 >= 0) {
-                s1 = Math.min(e.len, (now - e.cut0) * SPEED); s0 = e.cut1 >= 0 ? (now - e.cut1) * SPEED : 0;
+                s1 = Math.min(e.len, (now - e.cut0) * e.vf); s0 = e.cut1 >= 0 ? (now - e.cut1) * e.vf : 0;
                 if (s0 >= e.len) e.cut0 = e.cut1 = -1;
-                else { ctx.strokeStyle = C.drought; ctx.globalAlpha = (lit ? (ADD ? 0.5 : 0.62) : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
+                else { ctx.strokeStyle = C.drought; ctx.globalAlpha = (lit ? 0.4 : 0.1); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1, 0); ctx.stroke(); }
             }
             if (e.rep0 >= 0) {
-                s1 = Math.min(e.len, (now - e.rep0) * SPEED); s0 = e.rep1 >= 0 ? (now - e.rep1) * SPEED : 0;
+                s1 = Math.min(e.len, (now - e.rep0) * e.vf); s0 = e.rep1 >= 0 ? (now - e.rep1) * e.vf : 0;
                 if (s0 >= e.len) e.rep0 = e.rep1 = -1;
-                else { ctx.strokeStyle = C.repl; ctx.globalAlpha = (lit ? (ADD ? 0.6 : 0.7) : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
+                else { ctx.strokeStyle = C.repl; ctx.globalAlpha = (lit ? 0.5 : 0.1); ctx.lineWidth = Math.max(w * 0.8, 1 * u); ctx.beginPath(); trace(e, s0, s1, 2.1 * u); ctx.stroke(); }
             }
         }
 
@@ -275,32 +309,21 @@
             });
         });
 
-        /* shipments: a bright head with a fading wake */
-        for (i = 0; i < parts.length; i++) {
-            p = parts[i];
-            at(p.e, p.s, tmp); p.x = tmp.x + tmp.nx * p.off * u; p.y = tmp.y + tmp.ny * p.off * u;
-            at(p.e, Math.max(0, p.s - 3.2 * u), tmp); p.mx = tmp.x + tmp.nx * p.off * u; p.my = tmp.y + tmp.ny * p.off * u;
-            at(p.e, Math.max(0, p.s - 9 * u), tmp); p.tx = tmp.x + tmp.nx * p.off * u; p.ty = tmp.y + tmp.ny * p.off * u;
-            p.a = Math.abs(p.x - p.tx) > 40 ? 0 : 1;
-        }
-        ctx.globalCompositeOperation = C.blend;
-        for (var pass = 0; pass < 4; pass++) {
-            var teal = !!(pass & 1), dim = pass > 1;
+        /* shipments: a few short dashes travelling along the lanes, keeping to the right */
+        ctx.globalCompositeOperation = C.blend; ctx.lineCap = 'round';
+        for (var pass = 0; pass < 8; pass++) {
+            var teal = !!(pass & 1), head = !!(pass & 2), dim = pass > 3, any = false;
             if (dim && !hover) break;
-            var col = teal ? C.repl : C.grain, k = dim ? 0.16 : 1;
-            ctx.strokeStyle = col; ctx.fillStyle = col;
-            for (var layer = 0; layer < 3; layer++) {
-                ctx.beginPath();
-                for (i = 0; i < parts.length; i++) {
-                    p = parts[i]; if (p.teal !== teal) continue;
-                    lit = !hover || p.e.a === hover || p.e.b === hover;
-                    if (lit === dim) continue;
-                    if (layer === 2) { var r = (teal ? 1.2 : 1.05) * p.sz * u; ctx.moveTo(p.x + r, p.y); ctx.arc(p.x, p.y, r, 0, TAU); }
-                    else if (p.a) { ctx.moveTo(layer ? p.mx : p.tx, layer ? p.my : p.ty); ctx.lineTo(p.x, p.y); }
-                }
-                if (layer === 2) { ctx.globalAlpha = 0.95 * k; ctx.fill(); }
-                else { ctx.globalAlpha = (layer ? 0.5 : 0.22) * (ADD ? 1 : 0.9) * k; ctx.lineWidth = (layer ? 1.5 : 1.1) * u; ctx.stroke(); }
+            ctx.beginPath();
+            for (i = 0; i < parts.length; i++) {
+                p = parts[i]; if (p.teal !== teal) continue;
+                lit = !hover || p.e.a === hover || p.e.b === hover;
+                if (lit === dim) continue;
+                trace(p.e, p.s - (head ? DASH * 0.42 : DASH) * u, p.s, (teal ? 2.1 : SIDE) * u); any = true;
             }
+            if (!any) continue;
+            ctx.strokeStyle = teal ? C.repl : C.grain; ctx.lineWidth = (head ? 1.65 : 1.25) * u;
+            ctx.globalAlpha = (head ? 0.95 : 0.4) * (dim ? 0.14 : 1) * fade; ctx.stroke();
         }
         ctx.globalCompositeOperation = 'source-over';
 
@@ -423,7 +446,7 @@
     function seed() {
         parts.length = 0;
         edges.forEach(function (e) {
-            var n = RATE * e.f * (1 - e.a.shock) * e.len / SPEED, m = RATE * e.repl * e.len / SPEED, i;
+            var n = rate * e.f * (1 - e.a.shock) * e.len / SPEED, m = rate * 2.2 * e.repl * e.len / SPEED, i;
             for (i = 0; i < n; i++) if (Math.random() < n - i) spawn(e, false, Math.random() * e.len);
             for (i = 0; i < m; i++) if (Math.random() < m - i) spawn(e, true, Math.random() * e.len);
         });
@@ -469,7 +492,7 @@
     else visible = true;
     document.addEventListener('visibilitychange', wake);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (reduce) draw(); });
-    if (reduce) settle(); else { ui(); wake(); }
+    if (reduce) settle(); else { seed(); ui(); wake(); }
     window.__foodnet = { jump: function (s, t) {
         frozen = true; if (first) { first = false; scen = 0; seed(); }
         if (s !== stage || s === 1) enter(s);
