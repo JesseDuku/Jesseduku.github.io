@@ -155,6 +155,11 @@ img { max-width: 100%; display: block; }
 .pub-title a:hover { color: var(--accent-link); }
 .pub-meta { color: var(--text-muted); font-size: 0.9rem; }
 .pub-meta em { color: var(--text); }
+.pub-metrics { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; min-height: 0; }
+.pub-metrics .altmetric-embed { display: inline-flex; line-height: 0; }
+.pub-metrics .altmetric-embed:empty { display: none; }
+.pub-cites { color: var(--text-soft); font-size: 0.82rem; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.pub-cites[hidden] { display: none; }
 
 .poster-card {
     display: block; max-width: 660px;

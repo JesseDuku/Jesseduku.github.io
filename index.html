@@ -185,18 +185,30 @@
                         <div>
                             <p class="pub-title"><a href="https://doi.org/10.1029/2025EF008028" target="_blank" rel="noopener">The shrinking Caspian Sea: Eco-hydrological responses to human and climate pressures</a></p>
                             <p class="pub-meta"><strong>Duku, J.</strong>, Tourian, M. J., et al. &middot; <em>Earth&rsquo;s Future</em>, 2026</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1029/2025EF008028"></span>
+                                <span class="pub-cites" data-doi="10.1029/2025EF008028" hidden></span>
+                            </div>
                         </div>
                     </li>
                     <li>
                         <div>
                             <p class="pub-title"><a href="https://doi.org/10.1038/s44284-025-00296-w" target="_blank" rel="noopener">Building urban fire resilience to enhance national security</a></p>
                             <p class="pub-meta">AghaKouchak, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Nature Cities</em>, 2025</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1038/s44284-025-00296-w"></span>
+                                <span class="pub-cites" data-doi="10.1038/s44284-025-00296-w" hidden></span>
+                            </div>
                         </div>
                     </li>
                     <li>
                         <div>
                             <p class="pub-title"><a href="https://doi.org/10.1080/02626667.2026.2663050" target="_blank" rel="noopener">The Coupled Hydrology&ndash;Human Activity Information (CHHAI) dataset</a></p>
                             <p class="pub-meta">Boschee, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Hydrological Sciences Journal</em>, 2026</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1080/02626667.2026.2663050"></span>
+                                <span class="pub-cites" data-doi="10.1080/02626667.2026.2663050" hidden></span>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -238,6 +250,30 @@
     <footer class="site-footer">
         <p>&copy; 2026 Jesse Duku</p>
     </footer>
+
+    <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+    <script>
+    // Live citation counts from Crossref (no key needed). Hidden until a count of 1+ arrives.
+    document.querySelectorAll('.pub-cites[data-doi]').forEach(function (el) {
+        var doi = el.getAttribute('data-doi'), key = 'cites:' + doi;
+        function show(n) {
+            if (!(n > 0)) return;
+            el.textContent = n + (n === 1 ? ' citation' : ' citations');
+            el.title = 'Source: Crossref';
+            el.hidden = false;
+        }
+        try { var c = sessionStorage.getItem(key); if (c !== null) { show(+c); return; } } catch (e) {}
+        fetch('https://api.crossref.org/works/' + encodeURIComponent(doi))
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) {
+                if (!d) return;
+                var n = d.message['is-referenced-by-count'] || 0;
+                try { sessionStorage.setItem(key, n); } catch (e) {}
+                show(n);
+            })
+            .catch(function () {});
+    });
+    </script>
 
     <script data-goatcounter="https://jesseduku.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
