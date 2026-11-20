@@ -7,7 +7,9 @@
     'use strict';
     var D = window.FOODNET_DATA, root = document.querySelector('.foodnet');
     if (!D || !root) return;
-    var cv = root.querySelector('canvas'), ctx = cv.getContext('2d');
+    var cv = document.querySelector('.foodnet-canvas'), stageEl = root.querySelector('.foodnet-stage');
+    if (!cv || !stageEl) return;
+    var ctx = cv.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var SPEED = 78, RATE = 0.5, SPARE = 0.15, TAU = Math.PI * 2;
@@ -17,11 +19,14 @@
                   AUS: [0, 1], IND: [0, 1], THA: [-1, 0], VNM: [1, 0], KAZ: [1, -1],
                   MEX: [-1, 0], COL: [-1, 0], PER: [-1, 0], NGA: [-1, 0], MAR: [-1, 0], DZA: [0, -1], EGY: [-1, 0],
                   SDN: [-1, 0], TUR: [0, -1], PAK: [0, -1], CHN: [0, -1], KOR: [0, -1], IDN: [0, 1] };
-    var cs = getComputedStyle(root), C = {};
-    ['bg', 'land', 'coast', 'grat', 'route', 'grain', 'drought', 'repl', 'ink'].forEach(function (k) {
-        C[k] = cs.getPropertyValue('--fn-' + k).trim();
-    });
-    var FONT = cs.fontFamily;
+    var C = {}, FONT = '', ADD = false;
+    function colours() {
+        var cs = getComputedStyle(document.documentElement);
+        ['bg', 'land', 'coast', 'grat', 'route', 'grain', 'source', 'drought', 'repl', 'ink', 'blend'].forEach(function (k) {
+            C[k] = cs.getPropertyValue('--fn-' + k).trim();
+        });
+        ADD = C.blend === 'lighter'; FONT = getComputedStyle(document.body).fontFamily;
+    }
 
     /* ---------- network ---------- */
     var ids = Object.keys(D.nodes), nodes = {}, edges = [], maxLen = 0;
@@ -177,11 +182,13 @@
     }
 
     /* ---------- drawing ---------- */
-    var scale = 1, dpr = 1, ox = 0, cw = 0, ch = 0, land = new Path2D(D.land), grat = new Path2D(D.grat);
+    var scale = 1, dpr = 1, ox = 0, oy = 0, cw = 0, ch = 0, land = new Path2D(D.land), grat = new Path2D(D.grat);
     function resize() {
         cw = cv.clientWidth; ch = cv.clientHeight; if (!cw || !ch) return;
         dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var mw = Math.min(cw, ch * D.W / D.H); scale = mw / D.W; ox = (cw - mw) / 2;
+        var sr = stageEl.getBoundingClientRect(), sy = sr.top + window.scrollY;   /* the map is pinned where the cover leaves room for it */
+        var mw = Math.min(cw, 1400, sr.height * D.W / D.H); scale = mw / D.W; ox = (cw - mw) / 2;
+        oy = sy + (sr.height - mw * D.H / D.W) / 2;
         cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
         if (reduce || frozen) draw();
     }
@@ -208,7 +215,7 @@
         var intro = first ? now * SPEED * 1.25 : 1e9, fade = first ? ease(now / 1.2) : 1;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.globalCompositeOperation = 'source-over';
         ctx.clearRect(0, 0, cw, ch);
-        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, ox * dpr, 0);
+        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, ox * dpr, oy * dpr);
 
         /* base map */
         ctx.globalAlpha = fade; ctx.strokeStyle = C.grat; ctx.lineWidth = px; ctx.stroke(grat);
@@ -219,23 +226,23 @@
         ctx.lineCap = 'round';
         for (i = 0; i < edges.length; i++) {
             e = edges[i]; lit = !hover || e.a === hover || e.b === hover;
-            ctx.strokeStyle = 'rgba(' + C.route + ',' + ((0.1 + Math.min(0.16, e.f / 60)) * (lit ? (hover ? 2 : 1) : 0.3)).toFixed(3) + ')';
+            ctx.strokeStyle = 'rgba(' + C.route + ',' + ((0.085 + Math.min(0.15, e.f / 65)) * (lit ? (hover ? 2 : 1) : 0.3)).toFixed(3) + ')';
             ctx.lineWidth = (0.45 + Math.sqrt(e.f) * 0.2) * u;
             ctx.beginPath(); trace(e, 0, Math.min(e.len, intro)); ctx.stroke();
         }
-        ctx.globalCompositeOperation = 'lighter';
+        ctx.globalCompositeOperation = C.blend;
         for (i = 0; i < edges.length; i++) {
             e = edges[i]; lit = !hover || e.a === hover || e.b === hover;
             var w = (0.6 + Math.sqrt(e.f) * 0.24) * u, s0, s1;
             if (e.cut0 >= 0) {
                 s1 = Math.min(e.len, (now - e.cut0) * SPEED); s0 = e.cut1 >= 0 ? (now - e.cut1) * SPEED : 0;
                 if (s0 >= e.len) e.cut0 = e.cut1 = -1;
-                else { ctx.strokeStyle = C.drought; ctx.globalAlpha = (lit ? 0.5 : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
+                else { ctx.strokeStyle = C.drought; ctx.globalAlpha = (lit ? (ADD ? 0.5 : 0.62) : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
             }
             if (e.rep0 >= 0) {
                 s1 = Math.min(e.len, (now - e.rep0) * SPEED); s0 = e.rep1 >= 0 ? (now - e.rep1) * SPEED : 0;
                 if (s0 >= e.len) e.rep0 = e.rep1 = -1;
-                else { ctx.strokeStyle = C.repl; ctx.globalAlpha = (lit ? 0.55 : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
+                else { ctx.strokeStyle = C.repl; ctx.globalAlpha = (lit ? (ADD ? 0.6 : 0.7) : 0.12); ctx.lineWidth = w; ctx.beginPath(); trace(e, s0, s1); ctx.stroke(); }
             }
         }
 
@@ -245,7 +252,7 @@
             var g = Math.min(1, n.shock / 0.45), R = (n.r * 2.1 + 20) * (0.5 + 0.5 * g) * Math.min(u, 1.3);
             var gr = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, R * 1.7);
             gr.addColorStop(0, C.drought); gr.addColorStop(1, 'rgba(0,0,0,0)');
-            ctx.globalAlpha = 0.2 * g; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(n.x, n.y, R * 1.7, 0, TAU); ctx.fill();
+            ctx.globalAlpha = (ADD ? 0.2 : 0.13) * g; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(n.x, n.y, R * 1.7, 0, TAU); ctx.fill();
             ctx.strokeStyle = C.drought;
             [[1, 0, 0.7], [0.7, 5.5, 0.6], [0.42, 2.6, 0.9]].forEach(function (lv, j) {
                 var gj = ease((g - j * 0.12) / 0.76);
@@ -263,6 +270,7 @@
             at(p.e, Math.max(0, p.s - 9 * u), tmp); p.tx = tmp.x + tmp.nx * p.off * u; p.ty = tmp.y + tmp.ny * p.off * u;
             p.a = Math.abs(p.x - p.tx) > 40 ? 0 : 1;
         }
+        ctx.globalCompositeOperation = C.blend;
         for (var pass = 0; pass < 4; pass++) {
             var teal = !!(pass & 1), dim = pass > 1;
             if (dim && !hover) break;
@@ -278,7 +286,7 @@
                     else if (p.a) { ctx.moveTo(layer ? p.mx : p.tx, layer ? p.my : p.ty); ctx.lineTo(p.x, p.y); }
                 }
                 if (layer === 2) { ctx.globalAlpha = 0.95 * k; ctx.fill(); }
-                else { ctx.globalAlpha = (layer ? 0.5 : 0.22) * k; ctx.lineWidth = (layer ? 1.5 : 1.1) * u; ctx.stroke(); }
+                else { ctx.globalAlpha = (layer ? 0.5 : 0.22) * (ADD ? 1 : 0.9) * k; ctx.lineWidth = (layer ? 1.5 : 1.1) * u; ctx.stroke(); }
             }
         }
         ctx.globalCompositeOperation = 'source-over';
@@ -289,17 +297,19 @@
             var a = (lit ? 1 : 0.3) * fade, r = n.r * u;
             if (n.exp) {
                 var rs = r * Math.sqrt(1 - n.shock);
-                ctx.globalCompositeOperation = 'lighter';
-                var gl = ctx.createRadialGradient(n.x, n.y, rs * 0.6, n.x, n.y, rs * 2.6);
-                gl.addColorStop(0, C.grain); gl.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.globalAlpha = 0.28 * a * (1 - n.shock); ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(n.x, n.y, rs * 2.6, 0, TAU); ctx.fill();
-                ctx.globalCompositeOperation = 'source-over';
+                if (ADD) {
+                    ctx.globalCompositeOperation = 'lighter';
+                    var gl = ctx.createRadialGradient(n.x, n.y, rs * 0.6, n.x, n.y, rs * 2.6);
+                    gl.addColorStop(0, C.source); gl.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.globalAlpha = 0.26 * a * (1 - n.shock); ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(n.x, n.y, rs * 2.6, 0, TAU); ctx.fill();
+                    ctx.globalCompositeOperation = 'source-over';
+                }
                 if (n.shock > 0.01) {
                     ctx.globalAlpha = a * Math.min(1, n.shock * 4); ctx.strokeStyle = C.drought; ctx.lineWidth = 0.9 * u;
                     ctx.setLineDash([2 * u, 2 * u]); ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
                 }
                 ctx.globalAlpha = a; ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(n.x, n.y, rs + 1.2 * u, 0, TAU); ctx.fill();
-                ctx.fillStyle = C.grain; ctx.beginPath(); ctx.arc(n.x, n.y, rs, 0, TAU); ctx.fill();
+                ctx.fillStyle = C.source; ctx.beginPath(); ctx.arc(n.x, n.y, rs, 0, TAU); ctx.fill();
                 n.rr = r;
             } else {
                 var lost = 0, got = 0;
@@ -326,6 +336,7 @@
 
         /* labels */
         ctx.font = '500 ' + (11 * px) + 'px ' + FONT; ctx.lineJoin = 'round';
+        if ('letterSpacing' in ctx) ctx.letterSpacing = (0.12 * px) + 'px';
         ids.forEach(function (id) {
             n = nodes[id];
             var want = n === hover ? 1 : hover ? (n.exp && related(n) ? 0.5 : 0)
@@ -346,10 +357,10 @@
         ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'destination-in';
         var gx = ctx.createLinearGradient(0, 0, D.W, 0);
         gx.addColorStop(0, 'rgba(0,0,0,0)'); gx.addColorStop(0.05, '#000'); gx.addColorStop(0.95, '#000'); gx.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = gx; ctx.fillRect(-ox / scale, 0, cw / scale, D.H);
+        ctx.fillStyle = gx; ctx.fillRect(-ox / scale, -oy / scale, cw / scale, ch / scale);
         var gy = ctx.createLinearGradient(0, 0, 0, D.H);
         gy.addColorStop(0, 'rgba(0,0,0,0)'); gy.addColorStop(0.08, '#000'); gy.addColorStop(0.94, '#000'); gy.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = gy; ctx.fillRect(-ox / scale, 0, cw / scale, D.H);
+        ctx.fillStyle = gy; ctx.fillRect(-ox / scale, -oy / scale, cw / scale, ch / scale);
         ctx.globalCompositeOperation = 'source-over';
     }
 
@@ -396,16 +407,16 @@
         custom = null; scen = +this.getAttribute('data-scen'); restart();
     });
     function pick(ev) {
-        var r = cv.getBoundingClientRect(), x = (ev.clientX - r.left - ox) / scale, y = (ev.clientY - r.top) / scale, best = null, bd = 1e9;
+        var x = (ev.clientX - ox) / scale, y = (ev.clientY - oy) / scale, best = null, bd = 1e9;
         ids.forEach(function (id) { var n = nodes[id], d = Math.hypot(n.x - x, n.y - y) - n.r; if (d < bd) { bd = d; best = n; } });
         return bd < 10 / scale ? best : null;
     }
-    cv.addEventListener('pointermove', function (ev) {
+    stageEl.addEventListener('pointermove', function (ev) {
         var h = pick(ev); if (h === hover) return;
-        hover = h; cv.style.cursor = h && h.exp ? 'pointer' : 'default'; if (reduce) draw();
+        hover = h; stageEl.style.cursor = h && h.exp ? 'pointer' : 'default'; if (reduce) draw();
     });
-    cv.addEventListener('pointerleave', function () { hover = null; if (reduce) draw(); });
-    cv.addEventListener('click', function (ev) {
+    stageEl.addEventListener('pointerleave', function () { hover = null; if (reduce) draw(); });
+    stageEl.addEventListener('click', function (ev) {
         var n = pick(ev); if (!n || !n.exp) return;
         var sh = {}, base = custom && stage > 0 && stage < 4 ? custom : {};
         Object.keys(base).forEach(function (k) { sh[k] = base[k]; });
@@ -415,17 +426,20 @@
     });
 
     /* ---------- run ---------- */
-    var last = 0, visible = true, raf = 0, frozen = false;
+    var last = 0, front = true, raf = 0, frozen = false, skip = false;
     function frame(t) {
         raf = 0;
-        var dt = Math.min(0.05, (t - last) / 1000 || 0); last = t;
+        if (!document.hidden && !frozen) raf = requestAnimationFrame(frame);
+        if (!front && (skip = !skip)) return;          /* behind the content the map runs at half rate */
+        var dt = Math.min(0.07, (t - last) / 1000 || 0); last = t;
         step(dt); progress(); draw();
-        if (visible && !document.hidden && !frozen) raf = requestAnimationFrame(frame);
     }
-    function wake() { if (!raf && !reduce && !frozen && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
-    resize();
-    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(cv); else window.addEventListener('resize', resize);
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; wake(); }).observe(root);
+    function wake() { if (!raf && !reduce && !frozen && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+    colours(); resize();
+    new MutationObserver(function () { colours(); if (reduce || frozen) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    window.addEventListener('resize', resize);
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(stageEl);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { front = en[0].isIntersecting; if (!front) hover = null; }).observe(root);
     document.addEventListener('visibilitychange', wake);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (reduce) draw(); });
     if (reduce) settle(); else { ui(); wake(); }
