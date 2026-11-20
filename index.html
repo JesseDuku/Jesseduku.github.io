@@ -24,7 +24,7 @@
     <script>(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
-    <canvas class="foodnet-canvas" aria-hidden="true"></canvas>
+    <canvas class="basin" aria-hidden="true"></canvas>
 
     <nav class="top-nav">
         <div class="top-nav-inner">
@@ -43,33 +43,6 @@
         </div>
     </nav>
 
-    <section class="foodnet" aria-labelledby="foodnet-title">
-        <div class="foodnet-head">
-            <h2 id="foodnet-title">A drought in one country becomes a food shortage in another.</h2>
-            <p>I&rsquo;m Jesse Duku, a Ph.D. candidate at UC Irvine. I model how climate shocks travel through the global grain trade. The map is an illustrative sketch of that work. Click an exporter to set off a drought.</p>
-        </div>
-        <div class="foodnet-stage" role="img" aria-label="Animated world map of cereal trade routes. A drought reduces shipments from an exporting country, importers lose part of their supply, and other exporters replace some of it."></div>
-        <div class="foodnet-bar">
-            <div class="foodnet-scen" role="group" aria-label="Drought scenario">
-                <button type="button" data-scen="0" aria-pressed="false">United States</button>
-                <button type="button" data-scen="1" aria-pressed="false">Russia</button>
-                <button type="button" data-scen="2" aria-pressed="false">Both at once</button>
-            </div>
-            <ol class="foodnet-steps" aria-hidden="true">
-                <li data-step="0" class="is-on">Normal trade</li>
-                <li data-step="1">Drought</li>
-                <li data-step="2">Shortfall spreads</li>
-                <li data-step="3">Trade re-routes</li>
-            </ol>
-            <ul class="foodnet-legend">
-                <li><i class="k-grain"></i>Grain shipments</li>
-                <li><i class="k-repl"></i>Replacement supply</li>
-                <li><i class="k-lost"></i>Imports lost</li>
-            </ul>
-        </div>
-    </section>
-
-    <div class="veil">
     <main class="page">
 
         <aside class="sidebar">
@@ -117,14 +90,40 @@
                     <p>Most of my work looks at how floods and droughts are changing as the climate shifts, and what that means for the communities in their path. I am interested in compound hazards, cases where two risks hit at once and do more damage together than either would alone, and in extreme events more generally.</p>
                     <p>To get at this, I combine statistical hydrology with machine learning to forecast how much water we will have, put real numbers on the risks, and help design infrastructure that can keep up with a changing climate. The question of how AI can reshape water management is what drives my work.</p>
                 </div>
+                <figure class="gauge">
+                    <canvas role="img" aria-label="Live hydrograph: discharge at a stream gauge over the last minute, with a flood threshold, flagged peaks and a short forecast."></canvas>
+                    <figcaption>The streams behind this page are a small rainfall&ndash;runoff model. Rain crosses the page, drains into the rivers in the margins, and this is the flow it produces at the gauge.</figcaption>
+                </figure>
             </section>
 
             <section class="content-section" id="current">
                 <h2>Current Research</h2>
-                <div class="feature">
+                <div class="feature foodnet">
                     <span class="feature-badge">2026 &ndash; Present</span>
                     <h3>Global Food Security under Compound Climate Shocks</h3>
                     <p>Using climate data, AI, and network science to model how compound climate shocks propagate through the international food system and to predict acute food insecurity (IPC Phase 3+).</p>
+                    <canvas role="img" aria-label="Animated world map of cereal trade routes. A drought reduces shipments from an exporting country, importers lose part of their supply, and other exporters replace some of it."></canvas>
+                    <div class="foodnet-bar">
+                        <div class="foodnet-scen" role="group" aria-label="Drought scenario">
+                            <button type="button" data-scen="0" aria-pressed="false">United States</button>
+                            <button type="button" data-scen="1" aria-pressed="false">Russia</button>
+                            <button type="button" data-scen="2" aria-pressed="false">Both</button>
+                        </div>
+                        <ol class="foodnet-steps" aria-hidden="true">
+                            <li data-step="0" class="is-on">Normal trade</li>
+                            <li data-step="1">Drought</li>
+                            <li data-step="2">Shortfall spreads</li>
+                            <li data-step="3">Trade re-routes</li>
+                        </ol>
+                    </div>
+                    <div class="foodnet-foot">
+                        <ul class="foodnet-legend">
+                            <li><i class="k-grain"></i>Grain shipments</li>
+                            <li><i class="k-repl"></i>Replacement supply</li>
+                            <li><i class="k-lost"></i>Imports lost</li>
+                        </ul>
+                        <p>Illustrative sketch, not model output. Click an exporter to set off a drought.</p>
+                    </div>
                 </div>
             </section>
 
@@ -278,8 +277,8 @@
     <footer class="site-footer">
         <p>&copy; 2026 Jesse Duku</p>
     </footer>
-    </div>
 
+    <script defer src="assets/js/basin.js"></script>
     <script defer src="assets/js/foodnet-data.js"></script>
     <script defer src="assets/js/foodnet.js"></script>
     <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>

@@ -7,8 +7,8 @@
     'use strict';
     var D = window.FOODNET_DATA, root = document.querySelector('.foodnet');
     if (!D || !root) return;
-    var cv = document.querySelector('.foodnet-canvas'), stageEl = root.querySelector('.foodnet-stage');
-    if (!cv || !stageEl) return;
+    var cv = root.querySelector('canvas');
+    if (!cv) return;
     var ctx = cv.getContext('2d');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -21,7 +21,7 @@
                   SDN: [-1, 0], TUR: [0, -1], PAK: [0, -1], CHN: [0, -1], KOR: [0, -1], IDN: [0, 1] };
     var C = {}, FONT = '', ADD = false;
     function colours() {
-        var cs = getComputedStyle(document.documentElement);
+        var cs = getComputedStyle(root);
         ['bg', 'land', 'coast', 'grat', 'route', 'grain', 'source', 'drought', 'repl', 'ink', 'blend'].forEach(function (k) {
             C[k] = cs.getPropertyValue('--fn-' + k).trim();
         });
@@ -186,9 +186,7 @@
     function resize() {
         cw = cv.clientWidth; ch = cv.clientHeight; if (!cw || !ch) return;
         dpr = Math.min(window.devicePixelRatio || 1, 2);
-        var sr = stageEl.getBoundingClientRect(), sy = sr.top + window.scrollY;   /* the map is pinned where the cover leaves room for it */
-        var mw = Math.min(cw, 1400, sr.height * D.W / D.H); scale = mw / D.W; ox = (cw - mw) / 2;
-        oy = sy + (sr.height - mw * D.H / D.W) / 2;
+        var mw = Math.min(cw, ch * D.W / D.H); scale = mw / D.W; ox = (cw - mw) / 2; oy = (ch - mw * D.H / D.W) / 2;
         cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
         if (reduce || frozen) draw();
     }
@@ -340,7 +338,7 @@
         ids.forEach(function (id) {
             n = nodes[id];
             var want = n === hover ? 1 : hover ? (n.exp && related(n) ? 0.5 : 0)
-                     : n.exp ? (cw > 700 || n.shock > 0.05 ? 1 : 0) : (cw > 700 && stage === 3 && stageT > 3.5 && n.gap > 0.28 ? 1 : 0);
+                     : n.exp ? (cw > 900 || n.shock > 0.05 ? 1 : 0) : (cw > 560 && stage === 3 && stageT > 3.5 && n.gap > 0.28 ? 1 : 0);
             n.lab += (want - n.lab) * (reduce || frozen ? 1 : 0.12);
             if (n.lab < 0.02) return;
             var o = LABEL[id] || [1, 0], d = n.rr + 4.5 * px, hot = n.exp && n.shock > 0.05;
@@ -407,16 +405,16 @@
         custom = null; scen = +this.getAttribute('data-scen'); restart();
     });
     function pick(ev) {
-        var x = (ev.clientX - ox) / scale, y = (ev.clientY - oy) / scale, best = null, bd = 1e9;
+        var r = cv.getBoundingClientRect(), x = (ev.clientX - r.left - ox) / scale, y = (ev.clientY - r.top - oy) / scale, best = null, bd = 1e9;
         ids.forEach(function (id) { var n = nodes[id], d = Math.hypot(n.x - x, n.y - y) - n.r; if (d < bd) { bd = d; best = n; } });
         return bd < 10 / scale ? best : null;
     }
-    stageEl.addEventListener('pointermove', function (ev) {
+    cv.addEventListener('pointermove', function (ev) {
         var h = pick(ev); if (h === hover) return;
-        hover = h; stageEl.style.cursor = h && h.exp ? 'pointer' : 'default'; if (reduce) draw();
+        hover = h; cv.style.cursor = h && h.exp ? 'pointer' : 'default'; if (reduce) draw();
     });
-    stageEl.addEventListener('pointerleave', function () { hover = null; if (reduce) draw(); });
-    stageEl.addEventListener('click', function (ev) {
+    cv.addEventListener('pointerleave', function () { hover = null; if (reduce) draw(); });
+    cv.addEventListener('click', function (ev) {
         var n = pick(ev); if (!n || !n.exp) return;
         var sh = {}, base = custom && stage > 0 && stage < 4 ? custom : {};
         Object.keys(base).forEach(function (k) { sh[k] = base[k]; });
@@ -426,20 +424,19 @@
     });
 
     /* ---------- run ---------- */
-    var last = 0, front = true, raf = 0, frozen = false, skip = false;
+    var last = 0, visible = false, raf = 0, frozen = false;
     function frame(t) {
         raf = 0;
-        if (!document.hidden && !frozen) raf = requestAnimationFrame(frame);
-        if (!front && (skip = !skip)) return;          /* behind the content the map runs at half rate */
-        var dt = Math.min(0.07, (t - last) / 1000 || 0); last = t;
+        var dt = Math.min(0.05, (t - last) / 1000 || 0); last = t;
         step(dt); progress(); draw();
+        if (visible && !document.hidden && !frozen) raf = requestAnimationFrame(frame);
     }
-    function wake() { if (!raf && !reduce && !frozen && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+    function wake() { if (!raf && !reduce && !frozen && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } }
     colours(); resize();
-    new MutationObserver(function () { colours(); if (reduce || frozen) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    window.addEventListener('resize', resize);
-    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(stageEl);
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { front = en[0].isIntersecting; if (!front) hover = null; }).observe(root);
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(cv); else window.addEventListener('resize', resize);
+    /* the clock only runs while the card is on screen, so the routes draw themselves in when it is first seen */
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (!visible) hover = null; wake(); }, { threshold: 0.25 }).observe(cv);
+    else visible = true;
     document.addEventListener('visibilitychange', wake);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (reduce) draw(); });
     if (reduce) settle(); else { ui(); wake(); }
