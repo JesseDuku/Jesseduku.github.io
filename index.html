@@ -44,32 +44,27 @@
 
     <section class="foodnet" aria-labelledby="foodnet-title">
         <div class="foodnet-head">
-            <div class="foodnet-intro">
-                <h2 id="foodnet-title">How a drought travels through the grain trade</h2>
-                <p>A sketch of my current research. A failed harvest in one country cuts its exports, the shortfall reaches importers far away, and other exporters fill part of the gap.</p>
-            </div>
-            <div class="foodnet-controls">
-                <div class="foodnet-scen" role="group" aria-label="Drought scenario">
-                    <button type="button" data-scen="0" aria-pressed="false">United States</button>
-                    <button type="button" data-scen="1" aria-pressed="false">Russia</button>
-                    <button type="button" data-scen="2" aria-pressed="false">Both at once</button>
-                </div>
-                <ol class="foodnet-steps" aria-hidden="true">
-                    <li data-step="0" class="is-on">Normal trade</li>
-                    <li data-step="1">Drought</li>
-                    <li data-step="2">Shortfall spreads</li>
-                    <li data-step="3">Trade re-routes</li>
-                </ol>
-            </div>
+            <h2 id="foodnet-title">How a drought travels through the grain trade</h2>
+            <p>An illustrative sketch of my current research. A failed harvest cuts one country&rsquo;s exports, the shortfall reaches importers far away, and other exporters fill part of the gap. Click an exporter to set off a drought.</p>
         </div>
-        <div class="foodnet-map">
-            <canvas role="img" aria-label="Animated world map of cereal trade routes. A drought reduces shipments from an exporting country, importers lose part of their supply, and other exporters replace some of it."></canvas>
+        <canvas role="img" aria-label="Animated world map of cereal trade routes. A drought reduces shipments from an exporting country, importers lose part of their supply, and other exporters replace some of it."></canvas>
+        <div class="foodnet-bar">
+            <div class="foodnet-scen" role="group" aria-label="Drought scenario">
+                <button type="button" data-scen="0" aria-pressed="false">United States</button>
+                <button type="button" data-scen="1" aria-pressed="false">Russia</button>
+                <button type="button" data-scen="2" aria-pressed="false">Both at once</button>
+            </div>
+            <ol class="foodnet-steps" aria-hidden="true">
+                <li data-step="0" class="is-on">Normal trade</li>
+                <li data-step="1">Drought</li>
+                <li data-step="2">Shortfall spreads</li>
+                <li data-step="3">Trade re-routes</li>
+            </ol>
             <ul class="foodnet-legend">
                 <li><i class="k-grain"></i>Grain shipments</li>
                 <li><i class="k-repl"></i>Replacement supply</li>
                 <li><i class="k-lost"></i>Imports lost</li>
             </ul>
-            <p class="foodnet-note">Illustrative, not model output. Click an exporter to shock it.</p>
         </div>
     </section>
 
