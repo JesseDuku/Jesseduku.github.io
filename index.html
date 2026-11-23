@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jesse Duku — Ph.D. student at UC Irvine working on hydrologic and climate extremes, compound hazards, and machine learning for water resources.">
+    <meta name="description" content="Jesse Duku — Ph.D. student at UC Irvine studying climate extremes, compound climate and non-climate hazards, and their impacts on people.">
     <title>Jesse Duku</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jesseduku.github.io/">
-    <meta property="og:title" content="Jesse Duku — Hydrology & Machine Learning Researcher">
-    <meta property="og:description" content="PhD researcher at UC Irvine working on hydrologic and climate extremes, compound hazards, and machine learning for water resources.">
+    <meta property="og:title" content="Jesse Duku — Climate Extremes & Compound Hazards">
+    <meta property="og:description" content="Ph.D. student at UC Irvine studying climate extremes, compound climate and non-climate hazards, and their impacts on people.">
     <meta property="og:image" content="https://jesseduku.github.io/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jesse Duku — Hydrology & Machine Learning Researcher">
-    <meta name="twitter:description" content="PhD researcher at UC Irvine working on hydrologic and climate extremes, compound hazards, and machine learning for water resources.">
+    <meta name="twitter:title" content="Jesse Duku — Climate Extremes & Compound Hazards">
+    <meta name="twitter:description" content="Ph.D. student at UC Irvine studying climate extremes, compound climate and non-climate hazards, and their impacts on people.">
     <meta name="twitter:image" content="https://jesseduku.github.io/assets/og-image.png">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <script>(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <script>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
+    <canvas class="corners" aria-hidden="true"></canvas>
 
     <nav class="top-nav">
         <div class="top-nav-inner">
@@ -42,62 +43,152 @@
         </div>
     </nav>
 
-    <main class="page">
-
-        <aside class="sidebar">
-            <img src="assets/images/profile.png" alt="Portrait of Jesse Duku" class="sidebar-photo">
-            <h2 class="sidebar-name">Jesse Duku</h2>
-            <p class="sidebar-role">Ph.D. Candidate in Civil &amp; Environmental Engineering</p>
-            <ul class="sidebar-meta">
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    Irvine, CA, USA
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
-                    University of California, Irvine
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <a href="mailto:jduku@uci.edu">Email</a>
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                    <a href="https://scholar.google.com/citations?user=K2rtcv8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                    <a href="https://github.com/JesseDuku" target="_blank" rel="noopener">GitHub</a>
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    <a href="https://linkedin.com/in/jesse-duku-5a4655202" target="_blank" rel="noopener">LinkedIn</a>
-                </li>
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Jesse Duku</h1>
+            <p class="hero-role">Ph.D. student in Civil &amp; Environmental Engineering<br>University of California, Irvine</p>
+            <p class="hero-line">I study climate extremes, how they interact with non-climate hazards, and how the impacts reach people and the systems they depend on.</p>
+            <ul class="hero-links">
+                <li><a class="hero-cv" href="assets/Jesse_Duku_CV.pdf" target="_blank" rel="noopener">Download CV</a></li>
+                <li><a href="mailto:jduku@uci.edu" aria-label="Email" title="Email"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a></li>
+                <li><a href="https://scholar.google.com/citations?user=K2rtcv8AAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></a></li>
+                <li><a href="https://github.com/JesseDuku" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a></li>
+                <li><a href="https://linkedin.com/in/jesse-duku-5a4655202" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
             </ul>
-            <a class="cv-button" href="assets/Jesse_Duku_CV.pdf" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download CV
-            </a>
-        </aside>
+        </div>
+        <div class="hero-globe">
+            <canvas role="img" aria-label="A slowly turning globe with three satellites in orbit scanning the surface. Large lakes are marked in blue and the Caspian Sea is labelled."></canvas>
+        </div>
+    </header>
+
+    <main class="page page-single">
 
         <div class="content">
 
             <section id="about">
-                <h1>Jesse Duku</h1>
-                <div class="bio">
-                    <p>I am a PhD student in civil engineering at UC Irvine, where I study floods, droughts, and how machine learning can help us manage water better.</p>
-                    <p>Most of my work looks at how floods and droughts are changing as the climate shifts, and what that means for the communities in their path. I am interested in compound hazards, cases where two risks hit at once and do more damage together than either would alone, and in extreme events more generally.</p>
-                    <p>To get at this, I combine statistical hydrology with machine learning to forecast how much water we will have, put real numbers on the risks, and help design infrastructure that can keep up with a changing climate. The question of how AI can reshape water management is what drives my work.</p>
+                <h2>About</h2>
+                <div class="about">
+                    <img src="assets/images/profile.png" alt="Portrait of Jesse Duku" class="about-photo">
+                    <div class="bio">
+                        <p>Most of my work looks at how floods and droughts are changing as the climate shifts, and what that means for the communities in their path. I am interested in compound hazards, cases where two risks hit at once and do more damage together than either would alone, and in extreme events more generally.</p>
+                        <p>To get at this, I combine statistical hydrology, satellite observations, network theory and machine learning. So far that has meant working out why the Caspian Sea is shrinking, contributing to work on urban fire resilience, and following droughts through the global grain trade. The question that drives me is how a changing climate, together with human pressures, puts people and the systems they rely on at risk.</p>
+                    </div>
                 </div>
             </section>
 
             <section class="content-section" id="current">
-                <h2>Current Research</h2>
-                <div class="feature">
-                    <span class="feature-badge">2026 &ndash; Present</span>
-                    <h3>Global Food Security under Compound Climate Shocks</h3>
-                    <p>Using climate data, AI, and network science to model how compound climate shocks propagate through the international food system and to predict acute food insecurity (IPC Phase 3+).</p>
+                <h2>Research</h2>
+                <div class="feature foodnet">
+                    <div class="foodnet-head">
+                        <div>
+                            <span class="feature-badge">2026 &ndash; Present</span>
+                            <h3>Global Food Availability under Compound Climate Shocks</h3>
+                            <p>Using climate data and network theory to model how compound climate shocks travel through the international grain trade and reduce the food available to people far from where the shock began.</p>
+                        </div>
+                        <div class="foodnet-try">
+                            <p>Simulate a drought</p>
+                            <div class="foodnet-scen" role="group" aria-label="Drought scenario">
+                                <button type="button" data-scen="0" aria-pressed="false">United States</button>
+                                <button type="button" data-scen="1" aria-pressed="false">Russia</button>
+                                <button type="button" data-scen="2" aria-pressed="false">Both</button>
+                            </div>
+                            <p class="foodnet-hint">or click any exporter on the map</p>
+                        </div>
+                    </div>
+                    <canvas role="img" aria-label="Animated world map of cereal trade routes. A drought reduces shipments from an exporting country, importers lose part of their supply, and other exporters replace some of it."></canvas>
+                    <ol class="foodnet-steps" aria-hidden="true">
+                        <li data-step="0" class="is-on">Normal trade</li>
+                        <li data-step="1">Drought</li>
+                        <li data-step="2">Shortfall spreads</li>
+                        <li data-step="3">Trade re-routes</li>
+                    </ol>
+                    <div class="foodnet-foot">
+                        <ul class="foodnet-legend">
+                            <li><i class="k-grain"></i>Grain shipments</li>
+                            <li><i class="k-repl"></i>Replacement supply</li>
+                            <li><i class="k-lost"></i>Imports lost</li>
+                        </ul>
+                    </div>
                 </div>
+
+                <div class="feature caspian">
+                    <div class="caspian-text">
+                        <span class="feature-badge">Earth&rsquo;s Future &middot; 2026</span>
+                        <h3>The Shrinking Caspian Sea</h3>
+                        <p>The world&rsquo;s largest inland water body has been falling for three decades. We combined satellite altimetry, GRACE and long river records to work out how much of the decline comes from a warming climate and how much from less river water reaching the sea.</p>
+                        <dl class="caspian-facts">
+                            <div><dt>24,000 km&sup2;</dt><dd>of sea surface lost between 1996 and 2024, about the area of Sicily</dd></div>
+                            <div><dt>2.3 m</dt><dd>fall in water level since 1995</dd></div>
+                            <div><dt>Under 40%</dt><dd>of the loss explained by evaporation; the rest is less river inflow, mostly from the Volga</dd></div>
+                        </dl>
+                        <p class="caspian-links"><a href="https://doi.org/10.1029/2025EF008028" target="_blank" rel="noopener">Read the paper</a><a href="assets/Jesse_Duku_AGU2025_Poster.pdf" target="_blank" rel="noopener">AGU 2025 poster</a></p>
+                        <p class="caspian-news">Covered by 28 news outlets, including <a href="https://theconversation.com/the-caspian-sea-has-lost-an-area-nearly-the-size-of-sicily-human-activities-are-a-major-reason-why-285517" target="_blank" rel="noopener">The Conversation</a>, <a href="https://www.livescience.com/planet-earth/rivers-oceans/it-would-be-a-disaster-ammunition-for-war-and-surging-water-withdrawals-are-putting-the-caspian-sea-on-the-brink-of-collapse" target="_blank" rel="noopener">Live Science</a>, <a href="https://earthsky.org/earth/caspian-sea-earths-largest-inland-shrinking/" target="_blank" rel="noopener">EarthSky</a> and <a href="https://naked-science.ru/article/climate/kaspijskoe-more-stalo-men" target="_blank" rel="noopener">Naked Science</a>. <a href="https://www.altmetric.com/details/197774163/news" target="_blank" rel="noopener">See all on Altmetric</a></p>
+                    </div>
+                    <figure class="caspian-fig" title="Click to replay">
+                        <svg viewBox="0 0 260 491" role="img" aria-label="Satellite image of the Caspian Sea in July 2024 with the 1996 shoreline drawn over it. The seabed exposed since 1996, mostly along the shallow northern and north-eastern shores, is hatched in orange-red.">
+                          <defs>
+                            <clipPath id="cs-clip"><rect width="260" height="491" rx="12"/></clipPath>
+                            <pattern id="cs-hatch" width="3.6" height="3.6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path class="cs-hl" d="M0 0V3.6"/></pattern>
+                          </defs>
+                          <g clip-path="url(#cs-clip)">
+                            <image href="assets/images/caspian-2024.jpg" width="260" height="491" preserveAspectRatio="none"/>
+                            <g class="cs-gone"><path class="cs-tint" fill-rule="evenodd" d="M128.5 27.1L125.2 29.1L123.6 27.8L121.2 29.1L117.2 34.0L113.8 35.6L108.5 40.7L102.2 43.6L98.5 44.5L89.1 44.7L82.6 45.6L74.8 47.6L73.5 49.0L73.7 49.4L71.9 50.8L68.6 59.7L55.7 66.2L48.7 73.7L45.2 76.6L41.2 78.2L33.6 78.9L29.3 81.6L28.0 83.1L26.7 87.6L22.0 93.6L20.7 100.1L16.6 107.9L14.2 114.4L12.8 115.9L9.3 117.3L7.3 119.0L6.6 121.7L5.3 123.5L5.3 128.4L5.7 128.9L4.8 129.3L4.8 134.9L5.7 136.4L5.3 137.6L5.3 144.7L6.2 145.6L7.5 145.8L9.5 144.0L11.1 145.8L12.0 148.0L17.8 151.6L20.0 158.7L23.8 164.3L24.0 165.4L25.6 166.3L26.4 167.9L27.8 167.9L28.2 167.4L27.8 167.0L31.1 163.9L28.0 169.9L28.5 171.0L27.3 172.6L27.1 174.1L26.2 174.8L26.7 175.5L25.8 175.9L24.4 179.5L24.9 180.2L24.4 180.8L24.7 188.4L26.0 191.3L25.3 193.8L24.4 194.2L24.9 196.0L24.0 202.3L27.3 204.5L31.6 208.7L32.0 209.6L31.6 210.5L32.5 211.2L32.9 217.9L34.3 219.2L33.8 219.7L35.1 220.5L35.6 220.1L36.7 220.5L38.0 221.9L40.5 226.6L40.0 227.2L46.1 234.4L49.0 240.2L51.4 242.6L51.4 243.7L53.4 248.2L53.0 249.5L53.6 249.1L55.4 250.9L56.5 250.7L57.0 251.8L58.3 252.0L64.6 257.1L67.7 260.9L77.0 275.2L81.5 290.6L84.4 293.3L84.2 294.2L88.2 298.2L90.6 299.5L91.3 299.1L91.8 299.5L90.9 301.8L90.9 305.3L93.3 307.8L95.3 308.4L95.8 309.3L97.6 310.2L98.0 309.8L98.5 310.2L105.8 310.2L107.1 309.8L107.8 310.5L110.5 310.0L111.2 310.7L110.9 311.6L112.7 312.9L113.2 312.5L115.2 314.2L115.4 316.0L118.3 318.3L117.2 318.7L115.6 317.6L114.1 318.0L112.7 317.4L110.5 317.6L108.9 318.5L106.0 317.1L102.9 316.7L101.8 317.8L102.0 319.4L101.1 320.3L97.6 321.4L95.3 323.2L94.4 323.4L94.0 322.9L90.2 324.7L88.6 327.0L89.5 328.1L87.7 330.5L89.1 333.4L87.7 337.2L88.9 338.8L87.5 341.9L88.0 342.8L87.1 344.1L87.7 345.9L84.6 349.5L84.6 351.3L83.7 352.2L84.2 352.8L83.3 353.7L83.7 358.4L85.5 361.3L84.9 362.0L82.8 362.2L82.0 368.9L79.5 370.7L78.2 370.2L77.3 368.5L77.7 368.0L76.8 368.7L75.7 368.0L74.4 368.7L74.8 369.4L72.8 372.7L71.9 379.8L68.6 383.4L68.6 387.6L69.5 388.1L69.0 392.1L69.9 392.6L70.4 412.4L72.4 427.6L74.8 435.6L78.4 439.2L77.9 439.6L79.5 441.0L79.9 440.5L80.8 441.9L85.1 444.8L88.0 446.1L92.2 447.0L94.7 446.8L95.6 447.7L97.3 447.7L98.0 447.0L100.9 447.2L101.3 448.1L104.7 448.1L105.8 447.2L108.7 449.4L110.3 449.0L110.7 449.9L112.9 450.8L114.1 450.3L116.1 450.8L118.5 450.1L126.5 450.3L127.4 451.2L127.4 457.9L127.9 458.4L127.4 458.8L127.4 461.0L127.9 461.7L127.4 462.2L127.0 468.0L127.9 469.5L128.3 469.1L129.2 470.0L129.0 470.4L130.3 471.3L130.8 470.9L134.3 473.8L135.2 473.8L135.0 474.4L138.4 476.7L138.8 476.2L142.8 478.9L149.5 481.1L155.3 481.6L162.7 485.4L163.5 485.1L166.0 486.0L175.4 486.0L177.4 485.1L178.3 485.4L178.9 484.7L180.0 485.4L180.9 484.0L185.6 482.2L198.8 479.8L214.8 474.9L226.2 473.5L229.3 475.8L234.0 477.1L239.3 476.9L240.9 475.8L240.5 465.7L240.9 465.1L240.9 451.5L239.6 446.1L237.6 442.1L235.5 432.7L234.7 432.3L235.1 430.9L234.7 426.0L236.4 414.9L236.2 409.3L236.9 408.6L235.3 397.9L237.6 391.4L237.6 390.1L238.7 389.4L239.6 386.8L240.9 385.2L240.9 378.9L237.1 374.7L234.0 374.0L232.2 372.3L230.0 368.5L226.9 365.6L224.6 362.2L219.9 360.4L217.5 360.7L215.7 359.5L214.4 360.0L213.7 359.5L213.0 360.2L211.9 359.1L213.0 357.1L212.8 356.4L213.7 355.5L218.8 355.7L220.4 355.1L220.8 355.5L220.6 359.5L221.3 360.2L222.6 360.2L230.2 357.1L234.7 354.2L235.8 352.6L235.8 351.3L234.7 350.2L225.5 347.0L222.6 344.8L222.6 342.6L223.5 340.8L226.0 338.8L233.5 341.2L236.4 341.5L237.6 340.1L235.1 337.7L232.6 336.6L229.3 333.2L227.1 332.3L223.5 333.0L221.3 331.4L219.5 331.2L216.4 334.1L215.5 334.3L214.8 333.7L214.4 334.1L212.6 333.2L208.1 332.8L206.1 333.2L205.0 331.9L203.4 331.4L201.2 333.2L201.0 334.1L200.1 333.2L199.4 331.2L200.3 329.6L200.3 327.4L199.2 323.6L198.5 322.9L199.4 312.7L203.0 306.0L202.8 301.8L204.3 296.2L205.9 293.1L206.1 291.0L205.2 288.8L203.0 287.3L203.2 284.1L202.3 279.0L200.3 273.0L193.6 266.7L194.8 262.7L194.5 260.3L193.0 258.5L189.6 256.2L189.8 254.7L191.0 252.9L191.4 250.0L191.0 248.7L191.4 248.0L190.5 247.5L189.2 243.3L189.6 242.6L189.0 241.7L189.4 240.2L191.4 237.3L193.2 235.7L192.7 235.0L196.8 227.2L197.2 223.9L199.7 219.9L200.1 217.9L199.7 216.5L200.1 215.9L197.6 212.7L196.8 212.7L193.6 209.2L185.8 208.5L183.4 209.4L180.9 206.9L179.4 206.5L176.5 206.7L171.8 208.3L168.2 202.7L168.7 202.0L167.8 200.7L165.8 199.4L166.2 198.9L165.1 197.8L164.7 198.2L164.2 197.8L164.2 194.7L162.0 192.9L157.5 193.8L153.7 193.6L152.2 194.0L151.3 192.9L152.4 188.6L152.2 186.2L153.1 184.6L153.1 179.0L152.0 177.0L146.8 172.6L145.7 169.7L143.0 166.1L142.4 161.2L141.5 160.1L141.9 159.4L140.8 158.3L140.1 158.5L138.1 156.3L137.0 148.7L136.3 148.0L135.9 148.5L134.8 147.1L131.7 145.6L120.3 143.1L117.2 140.0L117.0 135.1L117.8 135.3L118.5 134.7L119.9 131.5L125.4 132.2L128.5 132.0L133.0 132.9L135.9 131.8L140.6 136.7L141.3 136.7L140.8 137.1L143.7 138.9L144.2 138.4L148.6 138.7L151.3 136.0L155.1 136.9L155.7 137.6L161.1 137.8L162.0 136.9L162.0 134.7L152.4 128.6L148.6 118.4L145.9 115.5L146.6 115.0L147.9 116.4L149.5 116.6L151.3 114.6L150.6 109.7L151.3 109.0L150.8 107.0L151.7 106.5L153.1 103.9L154.8 102.1L168.7 96.9L175.8 97.8L176.5 98.7L177.8 99.2L179.8 99.2L182.7 98.3L187.2 98.7L210.1 105.4L215.9 105.2L222.8 102.7L226.4 103.2L228.0 104.1L232.2 105.0L234.7 105.0L237.3 104.1L234.0 107.4L226.9 110.3L224.6 111.9L219.7 118.8L209.2 139.6L209.2 141.3L210.4 142.5L213.9 143.8L216.6 143.6L219.3 141.3L222.4 133.5L224.2 131.3L227.1 125.3L227.7 122.6L230.2 119.5L231.8 118.1L233.5 119.0L237.6 118.8L239.8 118.1L240.9 117.0L240.9 104.1L240.2 103.4L240.9 102.7L240.9 89.8L240.0 88.9L239.1 89.1L237.1 93.4L229.8 97.4L224.0 96.7L222.4 97.4L221.7 95.8L221.7 93.6L219.9 91.8L215.9 90.9L214.4 92.0L212.8 92.3L211.5 90.9L211.2 88.7L215.9 89.1L216.8 88.0L215.9 83.6L212.8 80.7L212.6 77.5L214.6 70.0L217.7 62.8L219.3 56.8L219.7 52.1L212.8 34.3L210.6 31.1L206.6 27.6L205.0 27.1L202.1 27.6L172.5 27.1L170.2 27.6L167.8 28.9L164.2 27.1L156.9 27.1L156.2 27.8L155.1 27.1L152.0 26.7L150.2 27.6L149.1 27.1L139.5 27.1L138.6 28.0L137.0 28.0L136.3 27.1ZM152.0 26.7L144.6 29.6L139.5 27.8L135.2 28.0L132.1 30.0L129.4 28.9L127.7 30.2L126.8 33.1L125.9 34.0L124.1 32.0L122.5 32.3L121.0 34.3L118.5 34.5L115.8 37.8L114.7 37.2L114.1 37.4L108.7 43.0L106.7 43.4L105.6 44.5L104.2 48.1L103.4 53.0L102.2 54.1L98.2 49.4L92.7 46.5L83.3 47.2L73.7 49.4L72.8 50.1L73.3 50.5L70.1 59.5L57.7 66.4L50.7 73.1L50.1 76.4L49.0 77.5L43.2 79.8L38.3 79.1L32.5 81.8L30.9 81.1L29.1 82.7L28.5 86.2L26.2 92.3L23.1 108.5L17.8 115.0L14.6 123.9L9.5 128.0L6.4 128.4L4.8 129.3L4.8 134.9L7.1 140.9L9.7 143.4L9.3 143.8L11.1 145.8L12.0 148.0L14.6 150.0L16.2 149.2L17.5 150.5L17.5 152.1L19.5 157.9L23.8 164.3L24.0 165.4L27.3 167.4L30.9 163.7L32.0 164.8L27.3 172.6L26.4 177.0L24.4 180.8L24.7 188.4L26.0 191.3L24.4 196.7L24.0 202.3L27.3 204.5L31.6 208.7L32.5 211.2L32.9 217.9L38.0 221.9L40.5 226.6L40.0 227.2L46.1 234.4L49.0 240.2L51.4 242.6L51.4 243.7L53.4 248.2L53.0 249.5L53.6 249.1L55.4 250.9L56.5 250.7L60.6 253.6L64.6 257.1L67.7 260.9L77.0 275.2L81.5 290.6L88.0 297.1L91.8 299.5L90.9 301.8L90.9 305.3L93.3 307.8L96.7 308.7L98.5 310.2L105.8 310.2L107.4 309.6L109.8 309.6L115.2 314.2L114.9 314.7L116.1 315.6L116.3 316.7L118.3 318.3L117.4 319.2L112.7 317.4L110.5 317.6L108.9 318.5L106.0 317.1L102.9 316.7L101.8 317.8L102.0 319.4L101.1 320.3L97.6 321.4L88.6 327.0L90.0 328.7L88.2 331.2L89.5 334.5L88.0 336.3L88.0 337.4L88.9 338.8L88.9 340.8L87.1 344.1L87.7 345.9L84.6 349.5L84.4 353.1L83.5 355.7L84.0 358.0L86.4 360.4L84.9 362.0L82.8 362.2L81.5 371.8L80.2 373.4L78.2 372.3L78.2 369.6L77.3 368.5L77.7 368.0L75.3 368.9L73.5 370.9L72.4 375.2L72.8 376.5L72.6 380.5L69.2 386.5L69.9 392.6L69.9 406.8L71.0 419.3L72.4 427.6L74.8 435.6L80.8 441.9L85.1 444.8L89.3 446.5L102.5 447.4L105.4 446.8L107.4 448.6L108.9 449.2L112.5 449.4L114.5 450.8L118.5 450.1L126.5 450.3L127.4 451.2L127.4 457.9L127.9 458.4L127.4 458.8L127.9 461.7L127.4 462.2L127.0 468.0L129.2 470.0L129.0 470.4L129.7 470.0L134.3 473.8L135.2 473.8L138.1 476.2L138.6 476.0L142.8 478.9L149.5 481.1L155.3 481.6L162.7 485.4L163.5 485.1L166.0 486.0L175.4 486.0L177.4 485.1L178.3 485.4L178.9 484.7L180.0 485.4L180.9 484.0L185.6 482.2L198.8 479.8L214.8 474.9L231.8 472.6L237.3 471.3L238.4 472.2L238.2 471.3L240.7 469.7L240.0 460.4L236.9 447.7L237.1 446.8L235.5 440.1L236.2 438.7L235.1 437.4L234.4 431.4L234.7 426.0L236.4 414.9L235.8 399.0L235.3 397.9L237.6 391.4L238.2 386.5L240.0 382.3L236.0 377.2L232.6 375.8L230.4 373.6L226.9 368.2L221.5 362.2L218.4 362.0L214.4 360.0L213.0 360.2L211.9 359.1L213.0 357.1L212.8 356.4L213.7 355.5L218.8 355.7L220.2 355.1L220.8 355.3L222.6 354.0L224.0 352.0L224.8 349.5L223.1 347.9L221.1 344.8L222.4 338.6L220.4 336.1L219.7 336.3L216.4 335.2L213.7 333.4L208.1 332.8L207.0 333.2L205.5 332.8L205.7 333.2L202.6 335.7L200.1 333.2L199.4 331.2L200.3 329.6L200.3 327.4L199.2 323.6L198.5 322.9L199.4 312.7L203.0 306.0L202.8 301.8L204.3 296.2L205.9 293.1L206.1 291.0L205.2 288.8L203.0 287.3L203.2 284.1L202.3 279.0L200.3 273.0L193.6 266.7L194.8 262.7L194.5 260.3L193.0 258.5L189.6 256.2L189.8 254.7L191.0 252.9L191.4 250.0L188.7 242.2L189.8 239.5L193.2 235.7L192.7 235.0L196.8 227.2L197.2 223.9L199.7 219.9L200.1 217.9L199.7 216.5L200.1 215.9L197.6 212.7L196.8 212.7L193.6 209.2L185.8 208.5L183.4 209.4L180.9 206.9L179.4 206.5L176.5 206.7L171.8 208.3L170.7 207.2L167.3 200.7L164.2 197.8L164.2 194.7L162.0 192.9L157.5 193.8L153.7 193.6L152.2 194.0L151.3 192.9L152.4 188.6L152.2 186.2L153.1 184.6L153.1 179.0L152.0 177.0L146.8 172.6L145.7 169.7L143.0 166.1L142.4 161.2L138.1 156.3L137.7 151.8L136.1 148.7L134.8 147.1L131.7 145.6L120.3 143.1L117.2 140.0L117.0 135.1L119.0 133.3L118.5 132.2L119.4 131.3L125.4 132.2L128.5 132.0L133.0 132.9L135.9 131.8L140.6 136.7L141.0 136.4L144.2 138.4L148.6 138.7L151.7 135.5L154.4 136.9L158.2 136.0L159.1 135.3L159.1 134.7L156.0 131.8L152.8 130.9L150.8 131.1L149.9 130.2L149.1 127.1L147.3 124.8L144.2 122.6L142.1 121.7L140.4 121.7L139.5 120.8L141.9 117.3L146.4 112.8L148.8 113.2L150.8 112.1L150.8 106.1L153.3 101.0L155.5 99.4L161.1 99.4L162.0 98.3L166.0 96.5L175.1 98.1L181.6 97.8L184.9 96.9L192.5 97.6L194.1 96.1L191.9 93.2L193.6 92.0L197.6 94.5L199.0 94.1L199.9 92.9L198.8 88.2L202.1 86.0L201.9 84.5L199.9 82.0L199.9 80.0L202.6 76.0L202.1 73.5L202.8 70.4L202.3 66.2L206.6 55.2L208.3 52.8L208.8 50.5L207.9 48.3L207.9 43.9L206.8 41.0L206.1 40.3L200.5 39.2L196.1 35.2L196.3 32.9L194.5 30.9L189.2 32.0L185.4 35.8L185.4 36.7L184.5 37.6L183.2 37.8L179.8 36.5L175.1 35.6L171.1 33.8L168.4 34.7L166.9 36.0L164.4 32.0L161.5 31.8L160.4 29.8L158.6 28.2Z"/><path fill-rule="evenodd" fill="url(#cs-hatch)" d="M128.5 27.1L125.2 29.1L123.6 27.8L121.2 29.1L117.2 34.0L113.8 35.6L108.5 40.7L102.2 43.6L98.5 44.5L89.1 44.7L82.6 45.6L74.8 47.6L73.5 49.0L73.7 49.4L71.9 50.8L68.6 59.7L55.7 66.2L48.7 73.7L45.2 76.6L41.2 78.2L33.6 78.9L29.3 81.6L28.0 83.1L26.7 87.6L22.0 93.6L20.7 100.1L16.6 107.9L14.2 114.4L12.8 115.9L9.3 117.3L7.3 119.0L6.6 121.7L5.3 123.5L5.3 128.4L5.7 128.9L4.8 129.3L4.8 134.9L5.7 136.4L5.3 137.6L5.3 144.7L6.2 145.6L7.5 145.8L9.5 144.0L11.1 145.8L12.0 148.0L17.8 151.6L20.0 158.7L23.8 164.3L24.0 165.4L25.6 166.3L26.4 167.9L27.8 167.9L28.2 167.4L27.8 167.0L31.1 163.9L28.0 169.9L28.5 171.0L27.3 172.6L27.1 174.1L26.2 174.8L26.7 175.5L25.8 175.9L24.4 179.5L24.9 180.2L24.4 180.8L24.7 188.4L26.0 191.3L25.3 193.8L24.4 194.2L24.9 196.0L24.0 202.3L27.3 204.5L31.6 208.7L32.0 209.6L31.6 210.5L32.5 211.2L32.9 217.9L34.3 219.2L33.8 219.7L35.1 220.5L35.6 220.1L36.7 220.5L38.0 221.9L40.5 226.6L40.0 227.2L46.1 234.4L49.0 240.2L51.4 242.6L51.4 243.7L53.4 248.2L53.0 249.5L53.6 249.1L55.4 250.9L56.5 250.7L57.0 251.8L58.3 252.0L64.6 257.1L67.7 260.9L77.0 275.2L81.5 290.6L84.4 293.3L84.2 294.2L88.2 298.2L90.6 299.5L91.3 299.1L91.8 299.5L90.9 301.8L90.9 305.3L93.3 307.8L95.3 308.4L95.8 309.3L97.6 310.2L98.0 309.8L98.5 310.2L105.8 310.2L107.1 309.8L107.8 310.5L110.5 310.0L111.2 310.7L110.9 311.6L112.7 312.9L113.2 312.5L115.2 314.2L115.4 316.0L118.3 318.3L117.2 318.7L115.6 317.6L114.1 318.0L112.7 317.4L110.5 317.6L108.9 318.5L106.0 317.1L102.9 316.7L101.8 317.8L102.0 319.4L101.1 320.3L97.6 321.4L95.3 323.2L94.4 323.4L94.0 322.9L90.2 324.7L88.6 327.0L89.5 328.1L87.7 330.5L89.1 333.4L87.7 337.2L88.9 338.8L87.5 341.9L88.0 342.8L87.1 344.1L87.7 345.9L84.6 349.5L84.6 351.3L83.7 352.2L84.2 352.8L83.3 353.7L83.7 358.4L85.5 361.3L84.9 362.0L82.8 362.2L82.0 368.9L79.5 370.7L78.2 370.2L77.3 368.5L77.7 368.0L76.8 368.7L75.7 368.0L74.4 368.7L74.8 369.4L72.8 372.7L71.9 379.8L68.6 383.4L68.6 387.6L69.5 388.1L69.0 392.1L69.9 392.6L70.4 412.4L72.4 427.6L74.8 435.6L78.4 439.2L77.9 439.6L79.5 441.0L79.9 440.5L80.8 441.9L85.1 444.8L88.0 446.1L92.2 447.0L94.7 446.8L95.6 447.7L97.3 447.7L98.0 447.0L100.9 447.2L101.3 448.1L104.7 448.1L105.8 447.2L108.7 449.4L110.3 449.0L110.7 449.9L112.9 450.8L114.1 450.3L116.1 450.8L118.5 450.1L126.5 450.3L127.4 451.2L127.4 457.9L127.9 458.4L127.4 458.8L127.4 461.0L127.9 461.7L127.4 462.2L127.0 468.0L127.9 469.5L128.3 469.1L129.2 470.0L129.0 470.4L130.3 471.3L130.8 470.9L134.3 473.8L135.2 473.8L135.0 474.4L138.4 476.7L138.8 476.2L142.8 478.9L149.5 481.1L155.3 481.6L162.7 485.4L163.5 485.1L166.0 486.0L175.4 486.0L177.4 485.1L178.3 485.4L178.9 484.7L180.0 485.4L180.9 484.0L185.6 482.2L198.8 479.8L214.8 474.9L226.2 473.5L229.3 475.8L234.0 477.1L239.3 476.9L240.9 475.8L240.5 465.7L240.9 465.1L240.9 451.5L239.6 446.1L237.6 442.1L235.5 432.7L234.7 432.3L235.1 430.9L234.7 426.0L236.4 414.9L236.2 409.3L236.9 408.6L235.3 397.9L237.6 391.4L237.6 390.1L238.7 389.4L239.6 386.8L240.9 385.2L240.9 378.9L237.1 374.7L234.0 374.0L232.2 372.3L230.0 368.5L226.9 365.6L224.6 362.2L219.9 360.4L217.5 360.7L215.7 359.5L214.4 360.0L213.7 359.5L213.0 360.2L211.9 359.1L213.0 357.1L212.8 356.4L213.7 355.5L218.8 355.7L220.4 355.1L220.8 355.5L220.6 359.5L221.3 360.2L222.6 360.2L230.2 357.1L234.7 354.2L235.8 352.6L235.8 351.3L234.7 350.2L225.5 347.0L222.6 344.8L222.6 342.6L223.5 340.8L226.0 338.8L233.5 341.2L236.4 341.5L237.6 340.1L235.1 337.7L232.6 336.6L229.3 333.2L227.1 332.3L223.5 333.0L221.3 331.4L219.5 331.2L216.4 334.1L215.5 334.3L214.8 333.7L214.4 334.1L212.6 333.2L208.1 332.8L206.1 333.2L205.0 331.9L203.4 331.4L201.2 333.2L201.0 334.1L200.1 333.2L199.4 331.2L200.3 329.6L200.3 327.4L199.2 323.6L198.5 322.9L199.4 312.7L203.0 306.0L202.8 301.8L204.3 296.2L205.9 293.1L206.1 291.0L205.2 288.8L203.0 287.3L203.2 284.1L202.3 279.0L200.3 273.0L193.6 266.7L194.8 262.7L194.5 260.3L193.0 258.5L189.6 256.2L189.8 254.7L191.0 252.9L191.4 250.0L191.0 248.7L191.4 248.0L190.5 247.5L189.2 243.3L189.6 242.6L189.0 241.7L189.4 240.2L191.4 237.3L193.2 235.7L192.7 235.0L196.8 227.2L197.2 223.9L199.7 219.9L200.1 217.9L199.7 216.5L200.1 215.9L197.6 212.7L196.8 212.7L193.6 209.2L185.8 208.5L183.4 209.4L180.9 206.9L179.4 206.5L176.5 206.7L171.8 208.3L168.2 202.7L168.7 202.0L167.8 200.7L165.8 199.4L166.2 198.9L165.1 197.8L164.7 198.2L164.2 197.8L164.2 194.7L162.0 192.9L157.5 193.8L153.7 193.6L152.2 194.0L151.3 192.9L152.4 188.6L152.2 186.2L153.1 184.6L153.1 179.0L152.0 177.0L146.8 172.6L145.7 169.7L143.0 166.1L142.4 161.2L141.5 160.1L141.9 159.4L140.8 158.3L140.1 158.5L138.1 156.3L137.0 148.7L136.3 148.0L135.9 148.5L134.8 147.1L131.7 145.6L120.3 143.1L117.2 140.0L117.0 135.1L117.8 135.3L118.5 134.7L119.9 131.5L125.4 132.2L128.5 132.0L133.0 132.9L135.9 131.8L140.6 136.7L141.3 136.7L140.8 137.1L143.7 138.9L144.2 138.4L148.6 138.7L151.3 136.0L155.1 136.9L155.7 137.6L161.1 137.8L162.0 136.9L162.0 134.7L152.4 128.6L148.6 118.4L145.9 115.5L146.6 115.0L147.9 116.4L149.5 116.6L151.3 114.6L150.6 109.7L151.3 109.0L150.8 107.0L151.7 106.5L153.1 103.9L154.8 102.1L168.7 96.9L175.8 97.8L176.5 98.7L177.8 99.2L179.8 99.2L182.7 98.3L187.2 98.7L210.1 105.4L215.9 105.2L222.8 102.7L226.4 103.2L228.0 104.1L232.2 105.0L234.7 105.0L237.3 104.1L234.0 107.4L226.9 110.3L224.6 111.9L219.7 118.8L209.2 139.6L209.2 141.3L210.4 142.5L213.9 143.8L216.6 143.6L219.3 141.3L222.4 133.5L224.2 131.3L227.1 125.3L227.7 122.6L230.2 119.5L231.8 118.1L233.5 119.0L237.6 118.8L239.8 118.1L240.9 117.0L240.9 104.1L240.2 103.4L240.9 102.7L240.9 89.8L240.0 88.9L239.1 89.1L237.1 93.4L229.8 97.4L224.0 96.7L222.4 97.4L221.7 95.8L221.7 93.6L219.9 91.8L215.9 90.9L214.4 92.0L212.8 92.3L211.5 90.9L211.2 88.7L215.9 89.1L216.8 88.0L215.9 83.6L212.8 80.7L212.6 77.5L214.6 70.0L217.7 62.8L219.3 56.8L219.7 52.1L212.8 34.3L210.6 31.1L206.6 27.6L205.0 27.1L202.1 27.6L172.5 27.1L170.2 27.6L167.8 28.9L164.2 27.1L156.9 27.1L156.2 27.8L155.1 27.1L152.0 26.7L150.2 27.6L149.1 27.1L139.5 27.1L138.6 28.0L137.0 28.0L136.3 27.1ZM152.0 26.7L144.6 29.6L139.5 27.8L135.2 28.0L132.1 30.0L129.4 28.9L127.7 30.2L126.8 33.1L125.9 34.0L124.1 32.0L122.5 32.3L121.0 34.3L118.5 34.5L115.8 37.8L114.7 37.2L114.1 37.4L108.7 43.0L106.7 43.4L105.6 44.5L104.2 48.1L103.4 53.0L102.2 54.1L98.2 49.4L92.7 46.5L83.3 47.2L73.7 49.4L72.8 50.1L73.3 50.5L70.1 59.5L57.7 66.4L50.7 73.1L50.1 76.4L49.0 77.5L43.2 79.8L38.3 79.1L32.5 81.8L30.9 81.1L29.1 82.7L28.5 86.2L26.2 92.3L23.1 108.5L17.8 115.0L14.6 123.9L9.5 128.0L6.4 128.4L4.8 129.3L4.8 134.9L7.1 140.9L9.7 143.4L9.3 143.8L11.1 145.8L12.0 148.0L14.6 150.0L16.2 149.2L17.5 150.5L17.5 152.1L19.5 157.9L23.8 164.3L24.0 165.4L27.3 167.4L30.9 163.7L32.0 164.8L27.3 172.6L26.4 177.0L24.4 180.8L24.7 188.4L26.0 191.3L24.4 196.7L24.0 202.3L27.3 204.5L31.6 208.7L32.5 211.2L32.9 217.9L38.0 221.9L40.5 226.6L40.0 227.2L46.1 234.4L49.0 240.2L51.4 242.6L51.4 243.7L53.4 248.2L53.0 249.5L53.6 249.1L55.4 250.9L56.5 250.7L60.6 253.6L64.6 257.1L67.7 260.9L77.0 275.2L81.5 290.6L88.0 297.1L91.8 299.5L90.9 301.8L90.9 305.3L93.3 307.8L96.7 308.7L98.5 310.2L105.8 310.2L107.4 309.6L109.8 309.6L115.2 314.2L114.9 314.7L116.1 315.6L116.3 316.7L118.3 318.3L117.4 319.2L112.7 317.4L110.5 317.6L108.9 318.5L106.0 317.1L102.9 316.7L101.8 317.8L102.0 319.4L101.1 320.3L97.6 321.4L88.6 327.0L90.0 328.7L88.2 331.2L89.5 334.5L88.0 336.3L88.0 337.4L88.9 338.8L88.9 340.8L87.1 344.1L87.7 345.9L84.6 349.5L84.4 353.1L83.5 355.7L84.0 358.0L86.4 360.4L84.9 362.0L82.8 362.2L81.5 371.8L80.2 373.4L78.2 372.3L78.2 369.6L77.3 368.5L77.7 368.0L75.3 368.9L73.5 370.9L72.4 375.2L72.8 376.5L72.6 380.5L69.2 386.5L69.9 392.6L69.9 406.8L71.0 419.3L72.4 427.6L74.8 435.6L80.8 441.9L85.1 444.8L89.3 446.5L102.5 447.4L105.4 446.8L107.4 448.6L108.9 449.2L112.5 449.4L114.5 450.8L118.5 450.1L126.5 450.3L127.4 451.2L127.4 457.9L127.9 458.4L127.4 458.8L127.9 461.7L127.4 462.2L127.0 468.0L129.2 470.0L129.0 470.4L129.7 470.0L134.3 473.8L135.2 473.8L138.1 476.2L138.6 476.0L142.8 478.9L149.5 481.1L155.3 481.6L162.7 485.4L163.5 485.1L166.0 486.0L175.4 486.0L177.4 485.1L178.3 485.4L178.9 484.7L180.0 485.4L180.9 484.0L185.6 482.2L198.8 479.8L214.8 474.9L231.8 472.6L237.3 471.3L238.4 472.2L238.2 471.3L240.7 469.7L240.0 460.4L236.9 447.7L237.1 446.8L235.5 440.1L236.2 438.7L235.1 437.4L234.4 431.4L234.7 426.0L236.4 414.9L235.8 399.0L235.3 397.9L237.6 391.4L238.2 386.5L240.0 382.3L236.0 377.2L232.6 375.8L230.4 373.6L226.9 368.2L221.5 362.2L218.4 362.0L214.4 360.0L213.0 360.2L211.9 359.1L213.0 357.1L212.8 356.4L213.7 355.5L218.8 355.7L220.2 355.1L220.8 355.3L222.6 354.0L224.0 352.0L224.8 349.5L223.1 347.9L221.1 344.8L222.4 338.6L220.4 336.1L219.7 336.3L216.4 335.2L213.7 333.4L208.1 332.8L207.0 333.2L205.5 332.8L205.7 333.2L202.6 335.7L200.1 333.2L199.4 331.2L200.3 329.6L200.3 327.4L199.2 323.6L198.5 322.9L199.4 312.7L203.0 306.0L202.8 301.8L204.3 296.2L205.9 293.1L206.1 291.0L205.2 288.8L203.0 287.3L203.2 284.1L202.3 279.0L200.3 273.0L193.6 266.7L194.8 262.7L194.5 260.3L193.0 258.5L189.6 256.2L189.8 254.7L191.0 252.9L191.4 250.0L188.7 242.2L189.8 239.5L193.2 235.7L192.7 235.0L196.8 227.2L197.2 223.9L199.7 219.9L200.1 217.9L199.7 216.5L200.1 215.9L197.6 212.7L196.8 212.7L193.6 209.2L185.8 208.5L183.4 209.4L180.9 206.9L179.4 206.5L176.5 206.7L171.8 208.3L170.7 207.2L167.3 200.7L164.2 197.8L164.2 194.7L162.0 192.9L157.5 193.8L153.7 193.6L152.2 194.0L151.3 192.9L152.4 188.6L152.2 186.2L153.1 184.6L153.1 179.0L152.0 177.0L146.8 172.6L145.7 169.7L143.0 166.1L142.4 161.2L138.1 156.3L137.7 151.8L136.1 148.7L134.8 147.1L131.7 145.6L120.3 143.1L117.2 140.0L117.0 135.1L119.0 133.3L118.5 132.2L119.4 131.3L125.4 132.2L128.5 132.0L133.0 132.9L135.9 131.8L140.6 136.7L141.0 136.4L144.2 138.4L148.6 138.7L151.7 135.5L154.4 136.9L158.2 136.0L159.1 135.3L159.1 134.7L156.0 131.8L152.8 130.9L150.8 131.1L149.9 130.2L149.1 127.1L147.3 124.8L144.2 122.6L142.1 121.7L140.4 121.7L139.5 120.8L141.9 117.3L146.4 112.8L148.8 113.2L150.8 112.1L150.8 106.1L153.3 101.0L155.5 99.4L161.1 99.4L162.0 98.3L166.0 96.5L175.1 98.1L181.6 97.8L184.9 96.9L192.5 97.6L194.1 96.1L191.9 93.2L193.6 92.0L197.6 94.5L199.0 94.1L199.9 92.9L198.8 88.2L202.1 86.0L201.9 84.5L199.9 82.0L199.9 80.0L202.6 76.0L202.1 73.5L202.8 70.4L202.3 66.2L206.6 55.2L208.3 52.8L208.8 50.5L207.9 48.3L207.9 43.9L206.8 41.0L206.1 40.3L200.5 39.2L196.1 35.2L196.3 32.9L194.5 30.9L189.2 32.0L185.4 35.8L185.4 36.7L184.5 37.6L183.2 37.8L179.8 36.5L175.1 35.6L171.1 33.8L168.4 34.7L166.9 36.0L164.4 32.0L161.5 31.8L160.4 29.8L158.6 28.2Z"/></g>
+                            <path class="cs-line" pathLength="1" d="M128.5 27.1L125.2 29.1L123.6 27.8L121.2 29.1L117.2 34.0L113.8 35.6L108.5 40.7L102.2 43.6L98.5 44.5L89.1 44.7L82.6 45.6L74.8 47.6L73.5 49.0L73.7 49.4L71.9 50.8L68.6 59.7L55.7 66.2L48.7 73.7L45.2 76.6L41.2 78.2L33.6 78.9L29.3 81.6L28.0 83.1L26.7 87.6L22.0 93.6L20.7 100.1L16.6 107.9L14.2 114.4L12.8 115.9L9.3 117.3L7.3 119.0L6.6 121.7L5.3 123.5L5.3 128.4L5.7 128.9L4.8 129.3L4.8 134.9L5.7 136.4L5.3 137.6L5.3 144.7L6.2 145.6L7.5 145.8L9.5 144.0L11.1 145.8L12.0 148.0L17.8 151.6L20.0 158.7L23.8 164.3L24.0 165.4L25.6 166.3L26.4 167.9L27.8 167.9L28.2 167.4L27.8 167.0L31.1 163.9L28.0 169.9L28.5 171.0L27.3 172.6L27.1 174.1L26.2 174.8L26.7 175.5L25.8 175.9L24.4 179.5L24.9 180.2L24.4 180.8L24.7 188.4L26.0 191.3L25.3 193.8L24.4 194.2L24.9 196.0L24.0 202.3L27.3 204.5L31.6 208.7L32.0 209.6L31.6 210.5L32.5 211.2L32.9 217.9L34.3 219.2L33.8 219.7L35.1 220.5L35.6 220.1L36.7 220.5L38.0 221.9L40.5 226.6L40.0 227.2L46.1 234.4L49.0 240.2L51.4 242.6L51.4 243.7L53.4 248.2L53.0 249.5L53.6 249.1L55.4 250.9L56.5 250.7L57.0 251.8L58.3 252.0L64.6 257.1L67.7 260.9L77.0 275.2L81.5 290.6L84.4 293.3L84.2 294.2L88.2 298.2L90.6 299.5L91.3 299.1L91.8 299.5L90.9 301.8L90.9 305.3L93.3 307.8L95.3 308.4L95.8 309.3L97.6 310.2L98.0 309.8L98.5 310.2L105.8 310.2L107.1 309.8L107.8 310.5L110.5 310.0L111.2 310.7L110.9 311.6L112.7 312.9L113.2 312.5L115.2 314.2L115.4 316.0L118.3 318.3L117.2 318.7L115.6 317.6L114.1 318.0L112.7 317.4L110.5 317.6L108.9 318.5L106.0 317.1L102.9 316.7L101.8 317.8L102.0 319.4L101.1 320.3L97.6 321.4L95.3 323.2L94.4 323.4L94.0 322.9L90.2 324.7L88.6 327.0L89.5 328.1L87.7 330.5L89.1 333.4L87.7 337.2L88.9 338.8L87.5 341.9L88.0 342.8L87.1 344.1L87.7 345.9L84.6 349.5L84.6 351.3L83.7 352.2L84.2 352.8L83.3 353.7L83.7 358.4L85.5 361.3L84.9 362.0L82.8 362.2L82.0 368.9L79.5 370.7L78.2 370.2L77.3 368.5L77.7 368.0L76.8 368.7L75.7 368.0L74.4 368.7L74.8 369.4L72.8 372.7L71.9 379.8L68.6 383.4L68.6 387.6L69.5 388.1L69.0 392.1L69.9 392.6L70.4 412.4L72.4 427.6L74.8 435.6L78.4 439.2L77.9 439.6L79.5 441.0L79.9 440.5L80.8 441.9L85.1 444.8L88.0 446.1L92.2 447.0L94.7 446.8L95.6 447.7L97.3 447.7L98.0 447.0L100.9 447.2L101.3 448.1L104.7 448.1L105.8 447.2L108.7 449.4L110.3 449.0L110.7 449.9L112.9 450.8L114.1 450.3L116.1 450.8L118.5 450.1L126.5 450.3L127.4 451.2L127.4 457.9L127.9 458.4L127.4 458.8L127.4 461.0L127.9 461.7L127.4 462.2L127.0 468.0L127.9 469.5L128.3 469.1L129.2 470.0L129.0 470.4L130.3 471.3L130.8 470.9L134.3 473.8L135.2 473.8L135.0 474.4L138.4 476.7L138.8 476.2L142.8 478.9L149.5 481.1L155.3 481.6L162.7 485.4L163.5 485.1L166.0 486.0L175.4 486.0L177.4 485.1L178.3 485.4L178.9 484.7L180.0 485.4L180.9 484.0L185.6 482.2L198.8 479.8L214.8 474.9L226.2 473.5L229.3 475.8L234.0 477.1L239.3 476.9L240.9 475.8L240.5 465.7L240.9 465.1L240.9 451.5L239.6 446.1L237.6 442.1L235.5 432.7L234.7 432.3L235.1 430.9L234.7 426.0L236.4 414.9L236.2 409.3L236.9 408.6L235.3 397.9L237.6 391.4L237.6 390.1L238.7 389.4L239.6 386.8L240.9 385.2L240.9 378.9L237.1 374.7L234.0 374.0L232.2 372.3L230.0 368.5L226.9 365.6L224.6 362.2L219.9 360.4L217.5 360.7L215.7 359.5L214.4 360.0L213.7 359.5L213.0 360.2L211.9 359.1L213.0 357.1L212.8 356.4L213.7 355.5L218.8 355.7L220.4 355.1L220.8 355.5L220.6 359.5L221.3 360.2L222.6 360.2L230.2 357.1L234.7 354.2L235.8 352.6L235.8 351.3L234.7 350.2L225.5 347.0L222.6 344.8L222.6 342.6L223.5 340.8L226.0 338.8L233.5 341.2L236.4 341.5L237.6 340.1L235.1 337.7L232.6 336.6L229.3 333.2L227.1 332.3L223.5 333.0L221.3 331.4L219.5 331.2L216.4 334.1L215.5 334.3L214.8 333.7L214.4 334.1L212.6 333.2L208.1 332.8L206.1 333.2L205.0 331.9L203.4 331.4L201.2 333.2L201.0 334.1L200.1 333.2L199.4 331.2L200.3 329.6L200.3 327.4L199.2 323.6L198.5 322.9L199.4 312.7L203.0 306.0L202.8 301.8L204.3 296.2L205.9 293.1L206.1 291.0L205.2 288.8L203.0 287.3L203.2 284.1L202.3 279.0L200.3 273.0L193.6 266.7L194.8 262.7L194.5 260.3L193.0 258.5L189.6 256.2L189.8 254.7L191.0 252.9L191.4 250.0L191.0 248.7L191.4 248.0L190.5 247.5L189.2 243.3L189.6 242.6L189.0 241.7L189.4 240.2L191.4 237.3L193.2 235.7L192.7 235.0L196.8 227.2L197.2 223.9L199.7 219.9L200.1 217.9L199.7 216.5L200.1 215.9L197.6 212.7L196.8 212.7L193.6 209.2L185.8 208.5L183.4 209.4L180.9 206.9L179.4 206.5L176.5 206.7L171.8 208.3L168.2 202.7L168.7 202.0L167.8 200.7L165.8 199.4L166.2 198.9L165.1 197.8L164.7 198.2L164.2 197.8L164.2 194.7L162.0 192.9L157.5 193.8L153.7 193.6L152.2 194.0L151.3 192.9L152.4 188.6L152.2 186.2L153.1 184.6L153.1 179.0L152.0 177.0L146.8 172.6L145.7 169.7L143.0 166.1L142.4 161.2L141.5 160.1L141.9 159.4L140.8 158.3L140.1 158.5L138.1 156.3L137.0 148.7L136.3 148.0L135.9 148.5L134.8 147.1L131.7 145.6L120.3 143.1L117.2 140.0L117.0 135.1L117.8 135.3L118.5 134.7L119.9 131.5L125.4 132.2L128.5 132.0L133.0 132.9L135.9 131.8L140.6 136.7L141.3 136.7L140.8 137.1L143.7 138.9L144.2 138.4L148.6 138.7L151.3 136.0L155.1 136.9L155.7 137.6L161.1 137.8L162.0 136.9L162.0 134.7L152.4 128.6L148.6 118.4L145.9 115.5L146.6 115.0L147.9 116.4L149.5 116.6L151.3 114.6L150.6 109.7L151.3 109.0L150.8 107.0L151.7 106.5L153.1 103.9L154.8 102.1L168.7 96.9L175.8 97.8L176.5 98.7L177.8 99.2L179.8 99.2L182.7 98.3L187.2 98.7L210.1 105.4L215.9 105.2L222.8 102.7L226.4 103.2L228.0 104.1L232.2 105.0L234.7 105.0L237.3 104.1L234.0 107.4L226.9 110.3L224.6 111.9L219.7 118.8L209.2 139.6L209.2 141.3L210.4 142.5L213.9 143.8L216.6 143.6L219.3 141.3L222.4 133.5L224.2 131.3L227.1 125.3L227.7 122.6L230.2 119.5L231.8 118.1L233.5 119.0L237.6 118.8L239.8 118.1L240.9 117.0L240.9 104.1L240.2 103.4L240.9 102.7L240.9 89.8L240.0 88.9L239.1 89.1L237.1 93.4L229.8 97.4L224.0 96.7L222.4 97.4L221.7 95.8L221.7 93.6L219.9 91.8L215.9 90.9L214.4 92.0L212.8 92.3L211.5 90.9L211.2 88.7L215.9 89.1L216.8 88.0L215.9 83.6L212.8 80.7L212.6 77.5L214.6 70.0L217.7 62.8L219.3 56.8L219.7 52.1L212.8 34.3L210.6 31.1L206.6 27.6L205.0 27.1L202.1 27.6L172.5 27.1L170.2 27.6L167.8 28.9L164.2 27.1L156.9 27.1L156.2 27.8L155.1 27.1L152.0 26.7L150.2 27.6L149.1 27.1L139.5 27.1L138.6 28.0L137.0 28.0L136.3 27.1Z"/>
+                          </g>
+                          <text x="9.8" y="32.6">Volga delta</text>
+                          <text x="208.3" y="268.4" text-anchor="middle">Kara-Bogaz</text>
+                          <rect class="cs-frame" x=".5" y=".5" width="259" height="490" rx="11.5"/>
+                        </svg>
+                        <figcaption><span><i class="k-line"></i>1996 shoreline</span><span><i class="k-gone"></i>Exposed since 1996</span><small>Satellite image: NASA VIIRS, 6 July 2024</small></figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="content-section" id="publications">
+                <h2>Publications</h2>
+                <ul class="publications">
+                    <li>
+                        <div>
+                            <p class="pub-title"><a href="https://doi.org/10.1029/2025EF008028" target="_blank" rel="noopener">The shrinking Caspian Sea: Eco-hydrological responses to human and climate pressures</a></p>
+                            <p class="pub-meta"><strong>Duku, J.</strong>, Tourian, M. J., et al. &middot; <em>Earth&rsquo;s Future</em>, 2026</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1029/2025EF008028"></span>
+                                <span class="pub-cites" data-doi="10.1029/2025EF008028" hidden></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="pub-title"><a href="https://doi.org/10.1038/s44284-025-00296-w" target="_blank" rel="noopener">Building urban fire resilience to enhance national security</a></p>
+                            <p class="pub-meta">AghaKouchak, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Nature Cities</em>, 2025</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1038/s44284-025-00296-w"></span>
+                                <span class="pub-cites" data-doi="10.1038/s44284-025-00296-w" hidden></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="pub-title"><a href="https://doi.org/10.1080/02626667.2026.2663050" target="_blank" rel="noopener">The Coupled Hydrology&ndash;Human Activity Information (CHHAI) dataset</a></p>
+                            <p class="pub-meta">Boschee, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Hydrological Sciences Journal</em>, 2026</p>
+                            <div class="pub-metrics">
+                                <span class="altmetric-embed" data-badge-type="4" data-badge-popover="right" data-hide-no-mentions="true" data-link-target="_blank" data-doi="10.1080/02626667.2026.2663050"></span>
+                                <span class="pub-cites" data-doi="10.1080/02626667.2026.2663050" hidden></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section" id="posters">
+                <h2>Talks &amp; Posters</h2>
+                <a class="poster-card" href="assets/Jesse_Duku_AGU2025_Poster.pdf" target="_blank" rel="noopener">
+                    <img src="assets/agu2025-poster.jpg" alt="AGU 2025 poster: The Shrinking Caspian Sea">
+                    <div class="poster-cap">
+                        <strong>The Shrinking Caspian Sea: Eco-hydrological Destabilization under Compound Human and Climate Stressors</strong>
+                        <span>Poster &middot; American Geophysical Union (AGU) Annual Meeting, 2025</span>
+                    </div>
+                </a>
             </section>
 
             <section class="content-section" id="projects">
@@ -106,8 +197,16 @@
 
                     <article class="card">
                         <a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener" class="card-image">
-                            <img src="assets/images/Plastic.png" alt="Plastic waste detection model">
-                        </a>
+                            <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Drone view of a river with six pieces of plastic waste marked by detection boxes">
+                              <path class="i2" d="M0 62C70 44 150 104 320 70M0 178C92 156 176 214 320 182"/>
+                              <path class="i3" d="M10 92C80 78 160 132 310 104M6 122C84 108 168 160 314 134M12 152C90 136 172 188 308 160"/>
+                              <path class="i3 dot" d="M24 30h1M70 22h1M118 44h1M176 30h1M232 22h1M286 40h1M40 208h1M98 222h1M160 226h1M222 218h1M280 212h1"/>
+                              <g class="obj"><path d="M61 99l9-3 5 6-7 6-8-3z"/><path d="M118 134l11 2 2 8-10 3-6-6z"/><path d="M171 110l8-4 7 5-4 8-9-1z"/><path d="M214 152l10-2 4 7-8 6-8-4z"/><path d="M252 118l9 1 3 8-9 4-6-6z"/><path d="M96 158l8-3 6 5-5 7-9-2z"/></g>
+                              <g class="m"><rect x="52" y="89" width="30" height="26"/><rect x="109" y="127" width="29" height="27"/><rect x="163" y="99" width="30" height="27"/><rect x="204" y="143" width="31" height="27"/><rect x="242" y="111" width="29" height="27"/><rect x="87" y="148" width="29" height="26"/></g>
+                              <rect class="mf" x="163" y="83" width="50" height="16" rx="2"/><text class="on" x="169" y="95">plastic</text>
+                              <path class="i" d="M14 26V14h12M294 14h12v12M306 214v12h-12M26 226H14v-12"/>
+                            </svg>
+                            </a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection</a></h3>
                             <p class="card-desc">A YOLOv8 computer vision model for detecting plastic in rivers, built during a REVA University data competition.</p>
@@ -117,8 +216,21 @@
 
                     <article class="card">
                         <a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener" class="card-image">
-                            <img src="assets/images/punching-shear.jpg" alt="Mechanical power press machine in a workshop">
-                        </a>
+                            <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Section through a concrete flat slab on a column, showing the inclined punching shear cracks and the variables used by the model">
+                              <path class="i" d="M22 84h276v36H186v96h-52v-96H22z"/>
+                              <path class="i3" d="M134 216h52"/>
+                              <path class="i2" d="M30 93h260"/>
+                              <path class="i dot2" d="M44 93h.1M72 93h.1M100 93h.1M128 93h.1M156 93h.1M184 93h.1M212 93h.1M240 93h.1M268 93h.1"/>
+                              <path class="a dash" d="M134 120L88 84M186 120l46-36"/>
+                              <path class="m" d="M160 204v-56M153 157l7-10 7 10"/>
+                              <text class="mt" x="170" y="186"><tspan font-style="italic">P</tspan><tspan dy="3" font-size="9">u</tspan></text>
+                              <path class="i2" d="M304 93v27M300 93h8M300 120h8"/><text x="286" y="111" font-style="italic">d</text>
+                              
+                              <text x="34" y="111" font-style="italic">f′<tspan dy="3" font-size="9">c</tspan></text>
+                              <text x="62" y="78" font-style="italic">ρ</text><path class="i2" d="M70 80l8 11"/>
+                              <text class="at" x="300" y="74" text-anchor="end">punching cone</text>
+                            </svg>
+                            </a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Punching Shear Prediction</a></h3>
                             <p class="card-desc">SVM regression model for punching shear failure in flat concrete slabs &mdash; my undergraduate thesis at KNUST.</p>
@@ -128,8 +240,16 @@
 
                     <article class="card">
                         <a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener" class="card-image">
-                            <img src="assets/images/water-quality.jpg" alt="Water quality classification visualization">
-                        </a>
+                            <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Nine water quality measurements feed a classifier that sorts samples into potable, 39 percent, and not potable, 61 percent">
+                              <g class="i3"><path d="M24 40h118M24 60h118M24 80h118M24 100h118M24 120h118M24 140h118M24 160h118M24 180h118M24 200h118"/></g>
+                              <g class="pt"><circle cx="92" cy="40" r="3.4"/><circle cx="58" cy="60" r="3.4"/><circle cx="118" cy="80" r="3.4"/><circle cx="74" cy="100" r="3.4"/><circle cx="101" cy="120" r="3.4"/><circle cx="46" cy="140" r="3.4"/><circle cx="87" cy="160" r="3.4"/><circle cx="126" cy="180" r="3.4"/><circle cx="66" cy="200" r="3.4"/></g>
+                              <g class="i3"><path d="M142 40L186 120M142 60L186 120M142 80L186 120M142 100L186 120M142 120H186M142 140L186 120M142 160L186 120M142 180L186 120M142 200L186 120"/></g>
+                              <circle class="m" cx="190" cy="120" r="6"/><path class="m" d="M196 120h14"/>
+                              <rect class="mf" x="214" y="40" width="14" height="62" rx="2"/><rect class="af" x="214" y="105" width="14" height="97" rx="2"/>
+                              <text class="big mt" x="238" y="68">39%</text><text x="238" y="84">potable</text>
+                              <text class="big at" x="238" y="150">61%</text><text x="238" y="166">not potable</text>
+                            </svg>
+                            </a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
                             <p class="card-desc">Predictive modeling for water potability across exploration, preprocessing, and classification stages.</p>
@@ -139,8 +259,15 @@
 
                     <article class="card">
                         <a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener" class="card-image">
-                            <img src="assets/images/waste-segregation.jpg" alt="AI-powered waste segregation sorter using machine learning">
-                        </a>
+                            <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="A cardboard box and the classifier's output: cardboard 0.95, paper 0.04, plastic 0.01, metal 0.00, trash 0.00">
+                              <path class="i" d="M28 104l46-22 46 22v56l-46 24-46-24zM28 104l46 24 46-24M74 128v56"/>
+                              <path class="i2" d="M51 93l46 23M28 104l-10-16 44-21 12 15M120 104l12-15-46-22"/>
+                              <g class="lab"><text x="150" y="70">cardboard</text><text x="150" y="102">paper</text><text x="150" y="134">plastic</text><text x="150" y="166">metal</text><text x="150" y="198">trash</text></g>
+                              <g class="i3"><path d="M222 66h46M222 98h46M222 130h46M222 162h46M222 194h46"/></g>
+                              <path class="bar" d="M222 66h43.7"/><path class="bar2" d="M222 98h1.9M222 130h.6"/>
+                              <g class="val"><text class="mt" x="306" y="70">0.95</text><text x="306" y="102">0.04</text><text x="306" y="134">0.01</text><text x="306" y="166">0.00</text><text x="306" y="198">0.00</text></g>
+                            </svg>
+                            </a>
                         <div class="card-body">
                             <h3 class="card-title"><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation</a></h3>
                             <p class="card-desc">Real-time YOLOv8 classifier across plastic, glass, paper, and trash for automated waste sorting.</p>
@@ -178,39 +305,17 @@
                 </ul>
             </section>
 
-            <section class="content-section" id="publications">
-                <h2>Publications</h2>
-                <ul class="publications">
+            <section class="content-section" id="teaching">
+                <h2>Teaching</h2>
+                <ul class="education-list">
                     <li>
-                        <div>
-                            <p class="pub-title"><a href="https://doi.org/10.1029/2025EF008028" target="_blank" rel="noopener">The shrinking Caspian Sea: Eco-hydrological responses to human and climate pressures</a></p>
-                            <p class="pub-meta"><strong>Duku, J.</strong>, Tourian, M. J., et al. &middot; <em>Earth&rsquo;s Future</em>, 2026</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p class="pub-title"><a href="https://doi.org/10.1038/s44284-025-00296-w" target="_blank" rel="noopener">Building urban fire resilience to enhance national security</a></p>
-                            <p class="pub-meta">AghaKouchak, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Nature Cities</em>, 2025</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p class="pub-title"><a href="https://doi.org/10.1080/02626667.2026.2663050" target="_blank" rel="noopener">The Coupled Hydrology&ndash;Human Activity Information (CHHAI) dataset</a></p>
-                            <p class="pub-meta">Boschee, A., &hellip; <strong>Duku, J.</strong>, et al. &middot; <em>Hydrological Sciences Journal</em>, 2026</p>
+                        <span class="edu-year">UC Irvine</span>
+                        <div class="edu-detail">
+                            <strong>Teaching Assistant, CEE 81B: Civil Engineering Practicum II</strong>
+                            <span>Surveying, GIS and AutoCAD</span>
                         </div>
                     </li>
                 </ul>
-            </section>
-
-            <section class="content-section" id="posters">
-                <h2>Talks &amp; Posters</h2>
-                <a class="poster-card" href="assets/Jesse_Duku_AGU2025_Poster.pdf" target="_blank" rel="noopener">
-                    <img src="assets/agu2025-poster.jpg" alt="AGU 2025 poster: The Shrinking Caspian Sea">
-                    <div class="poster-cap">
-                        <strong>The Shrinking Caspian Sea: Eco-hydrological Destabilization under Compound Human and Climate Stressors</strong>
-                        <span>Poster &middot; American Geophysical Union (AGU) Annual Meeting, 2025</span>
-                    </div>
-                </a>
             </section>
 
             <section class="content-section" id="contact">
@@ -238,6 +343,49 @@
     <footer class="site-footer">
         <p>&copy; 2026 Jesse Duku</p>
     </footer>
+
+    <script defer src="assets/js/corners.js"></script>
+    <script defer src="assets/js/vendor/d3-array.min.js"></script>
+    <script defer src="assets/js/vendor/d3-geo.min.js"></script>
+    <script defer src="assets/js/globe-data.js"></script>
+    <script defer src="assets/js/globe.js"></script>
+    <script>
+    /* the Caspian map plays once when it scrolls into view: the 1996 water drains to the 2024 shoreline */
+    (function () {
+        var f = document.querySelector('.caspian-fig'); if (!f) return;
+        function play() { f.classList.remove('is-in'); void f.offsetWidth; f.classList.add('is-in'); }
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { f.classList.add('is-in'); io.disconnect(); } }, { threshold: 0.45 });
+            io.observe(f);
+        } else f.classList.add('is-in');
+        f.addEventListener('click', play);
+    })();
+    </script>
+    <script defer src="assets/js/foodnet-data.js"></script>
+    <script defer src="assets/js/foodnet.js"></script>
+    <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+    <script>
+    // Live citation counts from Crossref (no key needed). Hidden until a count of 1+ arrives.
+    document.querySelectorAll('.pub-cites[data-doi]').forEach(function (el) {
+        var doi = el.getAttribute('data-doi'), key = 'cites:' + doi;
+        function show(n) {
+            if (!(n > 0)) return;
+            el.textContent = n + (n === 1 ? ' citation' : ' citations');
+            el.title = 'Source: Crossref';
+            el.hidden = false;
+        }
+        try { var c = sessionStorage.getItem(key); if (c !== null) { show(+c); return; } } catch (e) {}
+        fetch('https://api.crossref.org/works/' + encodeURIComponent(doi))
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) {
+                if (!d) return;
+                var n = d.message['is-referenced-by-count'] || 0;
+                try { sessionStorage.setItem(key, n); } catch (e) {}
+                show(n);
+            })
+            .catch(function () {});
+    });
+    </script>
 
     <script data-goatcounter="https://jesseduku.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>

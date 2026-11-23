@@ -21,7 +21,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <script>(function(){try{var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <script>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
 
@@ -43,7 +43,7 @@
 
     <header class="projects-hero">
         <h1>Projects</h1>
-        <p>A collection of research and engineering work spanning machine learning, computer vision, and water resources.</p>
+        <p>A collection of research and engineering work in machine learning and computer vision, from before and alongside my Ph.D.</p>
     </header>
 
     <main class="projects-page">
@@ -51,7 +51,15 @@
 
             <article class="card">
                 <a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener" class="card-image">
-                    <img src="assets/images/Plastic.png" alt="Plastic waste detection model output">
+                    <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Drone view of a river with six pieces of plastic waste marked by detection boxes">
+                    <path class="i2" d="M0 62C70 44 150 104 320 70M0 178C92 156 176 214 320 182"/>
+                    <path class="i3" d="M10 92C80 78 160 132 310 104M6 122C84 108 168 160 314 134M12 152C90 136 172 188 308 160"/>
+                    <path class="i3 dot" d="M24 30h1M70 22h1M118 44h1M176 30h1M232 22h1M286 40h1M40 208h1M98 222h1M160 226h1M222 218h1M280 212h1"/>
+                    <g class="obj"><path d="M61 99l9-3 5 6-7 6-8-3z"/><path d="M118 134l11 2 2 8-10 3-6-6z"/><path d="M171 110l8-4 7 5-4 8-9-1z"/><path d="M214 152l10-2 4 7-8 6-8-4z"/><path d="M252 118l9 1 3 8-9 4-6-6z"/><path d="M96 158l8-3 6 5-5 7-9-2z"/></g>
+                    <g class="m"><rect x="52" y="89" width="30" height="26"/><rect x="109" y="127" width="29" height="27"/><rect x="163" y="99" width="30" height="27"/><rect x="204" y="143" width="31" height="27"/><rect x="242" y="111" width="29" height="27"/><rect x="87" y="148" width="29" height="26"/></g>
+                    <rect class="mf" x="163" y="83" width="50" height="16" rx="2"/><text class="on" x="169" y="95">plastic</text>
+                    <path class="i" d="M14 26V14h12M294 14h12v12M306 214v12h-12M26 226H14v-12"/>
+                    </svg>
                 </a>
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Hackaton-on-Plastic-Free-rivers" target="_blank" rel="noopener">Plastic Waste Detection with Computer Vision</a></h3>
@@ -62,7 +70,19 @@
 
             <article class="card">
                 <a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener" class="card-image">
-                    <img src="assets/images/punching-shear.jpg" alt="Visualization of punching shear prediction model">
+                    <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Section through a concrete flat slab on a column, showing the inclined punching shear cracks and the variables used by the model">
+                    <path class="i" d="M22 84h276v36H186v96h-52v-96H22z"/>
+                    <path class="i3" d="M134 216h52"/>
+                    <path class="i2" d="M30 93h260"/>
+                    <path class="i dot2" d="M44 93h.1M72 93h.1M100 93h.1M128 93h.1M156 93h.1M184 93h.1M212 93h.1M240 93h.1M268 93h.1"/>
+                    <path class="a dash" d="M134 120L88 84M186 120l46-36"/>
+                    <path class="m" d="M160 204v-56M153 157l7-10 7 10"/>
+                    <text class="mt" x="170" y="186"><tspan font-style="italic">P</tspan><tspan dy="3" font-size="9">u</tspan></text>
+                    <path class="i2" d="M304 93v27M300 93h8M300 120h8"/><text x="286" y="111" font-style="italic">d</text>
+                    <text x="34" y="111" font-style="italic">f′<tspan dy="3" font-size="9">c</tspan></text>
+                    <text x="62" y="78" font-style="italic">ρ</text><path class="i2" d="M70 80l8 11"/>
+                    <text class="at" x="300" y="74" text-anchor="end">punching cone</text>
+                    </svg>
                 </a>
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Punching-Shear-Prediction-using-ML" target="_blank" rel="noopener">Predicting Punching Shear Failure in Concrete Slabs</a></h3>
@@ -73,7 +93,15 @@
 
             <article class="card">
                 <a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener" class="card-image">
-                    <img src="assets/images/water-quality.jpg" alt="Water quality classification visualization">
+                    <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="Nine water quality measurements feed a classifier that sorts samples into potable, 39 percent, and not potable, 61 percent">
+                    <g class="i3"><path d="M24 40h118M24 60h118M24 80h118M24 100h118M24 120h118M24 140h118M24 160h118M24 180h118M24 200h118"/></g>
+                    <g class="pt"><circle cx="92" cy="40" r="3.4"/><circle cx="58" cy="60" r="3.4"/><circle cx="118" cy="80" r="3.4"/><circle cx="74" cy="100" r="3.4"/><circle cx="101" cy="120" r="3.4"/><circle cx="46" cy="140" r="3.4"/><circle cx="87" cy="160" r="3.4"/><circle cx="126" cy="180" r="3.4"/><circle cx="66" cy="200" r="3.4"/></g>
+                    <g class="i3"><path d="M142 40L186 120M142 60L186 120M142 80L186 120M142 100L186 120M142 120H186M142 140L186 120M142 160L186 120M142 180L186 120M142 200L186 120"/></g>
+                    <circle class="m" cx="190" cy="120" r="6"/><path class="m" d="M196 120h14"/>
+                    <rect class="mf" x="214" y="40" width="14" height="62" rx="2"/><rect class="af" x="214" y="105" width="14" height="97" rx="2"/>
+                    <text class="big mt" x="238" y="68">39%</text><text x="238" y="84">potable</text>
+                    <text class="big at" x="238" y="150">61%</text><text x="238" y="166">not potable</text>
+                    </svg>
                 </a>
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Water_Quality_classification/" target="_blank" rel="noopener">Water Quality Classification</a></h3>
@@ -84,7 +112,14 @@
 
             <article class="card">
                 <a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener" class="card-image">
-                    <img src="assets/images/waste-segregation.jpg" alt="AI-powered waste segregation sorter using machine learning">
+                    <svg class="fig" viewBox="0 0 320 240" role="img" aria-label="A cardboard box and the classifier's output: cardboard 0.95, paper 0.04, plastic 0.01, metal 0.00, trash 0.00">
+                    <path class="i" d="M28 104l46-22 46 22v56l-46 24-46-24zM28 104l46 24 46-24M74 128v56"/>
+                    <path class="i2" d="M51 93l46 23M28 104l-10-16 44-21 12 15M120 104l12-15-46-22"/>
+                    <g class="lab"><text x="150" y="70">cardboard</text><text x="150" y="102">paper</text><text x="150" y="134">plastic</text><text x="150" y="166">metal</text><text x="150" y="198">trash</text></g>
+                    <g class="i3"><path d="M222 66h46M222 98h46M222 130h46M222 162h46M222 194h46"/></g>
+                    <path class="bar" d="M222 66h43.7"/><path class="bar2" d="M222 98h1.9M222 130h.6"/>
+                    <g class="val"><text class="mt" x="306" y="70">0.95</text><text x="306" y="102">0.04</text><text x="306" y="134">0.01</text><text x="306" y="166">0.00</text><text x="306" y="198">0.00</text></g>
+                    </svg>
                 </a>
                 <div class="card-body">
                     <h3 class="card-title"><a href="https://github.com/JesseDuku/Waste-Segregation-Using-ML" target="_blank" rel="noopener">Waste Segregation with Computer Vision</a></h3>
